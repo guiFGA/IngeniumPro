@@ -1,15 +1,16 @@
-import {Routes,Route} from 'react-router-dom'
+import { HashRouter as Router, Route, Routes} from 'react-router-dom'
 import Cadastro from './pages/cadastro'
 import React from 'react'
 
 function App() {
-  
-
   return (
-     <Routes>
-      <Route path='/' element={<Cadastro/>}/>
-     </Routes>
-   
+    <Router>
+        <Routes>
+          <Route path='/' element={<Cadastro/>}/>
+          //Coloque aqui todos das paginas que vcs criarem, da mesma formatação da linha 9.
+          
+        </Routes>
+    </Router>
   )
 }
 
