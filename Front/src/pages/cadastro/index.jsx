@@ -1,7 +1,9 @@
 import React from "react"
 import './style.css'
+import api from '../../services/api'
+
 function cadastro() {
-   
+
 
     // Ala para criar funções de integração com o backend, além dos hooks do front.
 
