@@ -1,8 +1,9 @@
 //Esse import tem a mesma função que usar: const express = require('express');
+import cors from 'cors'
 import express from 'express';
 
 const app = express();
-
+app.use(cors())
 import bcrypt from 'bcrypt';
 
 //conectar com o banco de dados
@@ -10,7 +11,7 @@ import bcrypt from 'bcrypt';
 
 import Sequelize from 'sequelize'
 //primeiro parametro = nome do banco, segundo = nome do usuario do banco, terceiro = senha do banco
-const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
+const sequelize = new Sequelize('IngeniumPro', 'root', 'narutoonline@123', {
     host: "localhost", //onde o banco ta hospedado
     dialect: 'mysql' //qual é o banco de dados
 } 

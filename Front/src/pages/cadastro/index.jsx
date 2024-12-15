@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import React from "react"
 import './style.css'
 import api from '../../services/api'
@@ -6,7 +7,21 @@ function cadastro() {
 
 
     // Ala para criar funções de integração com o backend, além dos hooks do front.
+    let users = []
 
+    async function getUsers() {
+        const usersFromApi = await api.get('/enviar')
+        users = usersFromApi.data
+        console.log(users)
+
+    }
+
+    useEffect(() => {
+        getUsers()
+    }, [])
+    
+
+    
     return (
         <div className="container">
             
