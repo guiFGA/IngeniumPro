@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import React from "react"
 import './style.css'
 import api from '../../services/api'
+import logo from '../../assets/logo.svg'
+import enviar from '../../assets/enviar.svg'
 
 function cadastro() {
 
@@ -26,9 +28,7 @@ function cadastro() {
         <div className="container">
             
             <header>
-              
-                <h1 className="ingenium">Ingenium</h1>
-                <h1 className="pro">Pro</h1>
+                <img src={logo} alt="logo" />
 
             </header>
 
@@ -46,7 +46,7 @@ function cadastro() {
 
                     <div className="login">
                         <p>Ja possui uma conta? </p>
-                        <p className="azul">login</p>
+                        <a href="https://www.google.com.br/?hl=pt-BR">login</a>
                     </div>
 
                 </div>
@@ -61,7 +61,8 @@ function cadastro() {
                         <input name="usuario" type="text" placeholder="digite um nome de usuario..."/>
                         <label htmlFor="senha">Senha</label>
                         <input name="senha" type="password" placeholder="crie sua senha..." />
-                        <button type="button">Cadastro</button>
+                        <button><img src={enviar} alt="enviar" /></button>
+                        
                     </form>
 
                 </div>

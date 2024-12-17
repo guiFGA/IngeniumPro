@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -24,8 +25,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: x-large;
   
+  }
+
+  header img{
+    position: relative;
+    top: 30px;
+    align-self: center;
+    left: 50px;
+    width: 650px;
+    height: 220px;
+   
   }
   
   .pro{
@@ -36,12 +46,12 @@
     display: flex;
     width: 1700px;
     height: 750px;
-    background-color: #040B10;
-    border: 1px solid transparent;
-    border-image: linear-gradient(to bottom, #02BCFF, #141616 ) 1; 
-  
+    background-image: url('../../assets/Retangulo.png');
+    background-size: 1700px 750px;
+    background-repeat: no-repeat;
     position: relative;
     left: 140px;
+    top: 20px
    
   }
   
@@ -53,7 +63,8 @@
     width: 650px;
     height: 650px;
     position: relative;
-    
+    top: 30px;
+    left: 30px;
     
     display: flex;
     flex-direction: column;
@@ -78,6 +89,10 @@
     bottom: 100px;
   }
   
+  a{
+    text-decoration: none;
+    color:#00D0FF;
+  }
   .login{
     
     position: relative;
@@ -85,6 +100,7 @@
     right: 100px;
     display: flex;
     gap: 8px;
+    
   }
   
   .azul{
@@ -114,8 +130,9 @@
     bottom: 20px;
     position: relative;
     background-color: #040B10;
-    border: 1px solid transparent;
-    border-image: linear-gradient(to bottom, #02BCFF, #141616 ) 1;
+    background-image: url('../../assets/Retangulo.png');
+    background-size: 700px 550px;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -124,7 +141,12 @@
   
   form h1{
     position: relative;
-    top: 10px;
+    top: 20px;
+  }
+
+  label{
+    position: relative;
+    top: 15px;
   }
   
   input{
@@ -133,6 +155,8 @@
     border: none;
     border-radius: 1rem;
     width: 400px;
+    position: relative;
+    top: 15px;
   
   
   }
@@ -140,13 +164,16 @@
   form button{
     position: relative;
     top: 40px;
+    width: 10px;
+    height: 10px;
     
-    width: 300px;
-    height: 50px;
-    border: 1px solid transparent;
-    border-image: linear-gradient(to bottom, #02BCFF, #141616 ) 1; 
-    background-color: #021016;
-    
-    color: white;
     cursor: pointer;
   }
+
+  form img{
+    position: relative;
+    right: 180px;
+    bottom: 15px;
+    height: 80px;
+  }
+  
