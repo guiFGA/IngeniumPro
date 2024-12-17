@@ -11,7 +11,7 @@ import bcrypt from 'bcrypt';
 
 import Sequelize from 'sequelize'
 //primeiro parametro = nome do banco, segundo = nome do usuario do banco, terceiro = senha do banco
-const sequelize = new Sequelize('IngeniumPro', 'root', 'narutoonline@123', {
+const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
     host: "localhost", //onde o banco ta hospedado
     dialect: 'mysql' //qual é o banco de dados
 } 
@@ -46,7 +46,8 @@ import path from 'path'
 const __dirname = path.resolve() //dirname = a todo o caminho raiz, o que vem antes da pasta presente
 
 //enviar um arquivo html para a rota
-app.get('/Cadastro',(req, res) => {
+app.get('/cadastro',(req, res) => {
+    
     res.sendFile(__dirname + '/cadastro.html')
 })
 
@@ -55,11 +56,13 @@ import bodyParser from 'body-parser';
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//rota para capturar os dados do html
-app.post('/enviar', async(req,res) =>{
-    //registrando a captura
+ 
 
-    //encriptografando a senha 
+
+
+
+app.post('/enviar', async(req, res) => {
+    
     const senhaCripto = await bcrypt.hash(req.body.senha, 10)
 
     //salvando os dados
@@ -70,10 +73,12 @@ app.post('/enviar', async(req,res) =>{
     })
 
     //mensagem de confirmação
-    res.send("Usuário cadastrado com sucesso!!")
+    
+    res.redirect('https://www.example.com');
+    
 
-})
-
+     
+});
 
 
 app.listen(3000, ()=>{

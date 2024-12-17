@@ -5,14 +5,33 @@ import api from '../../services/api'
 import logo from '../../assets/logo.svg'
 import enviar from '../../assets/enviar.svg'
 
-function cadastro() {
+/*function login() {
 
+    const email = document.getElementById('email').value;
+    const nome = document.getElementById('nome').value;
+    const senha = document.getElementById('senha').value;
+    api.post('http://localhost:3000/enviar', Email=email, Nome=nome, Senha=senha )
+      .then(({ data }) => {
+        console.log(data);
+    
+         
+      })
+      .catch(err => {
+    
+        console.log(err);
+      });
+
+}
+*/
+
+function cadastro() {
+    
 
     // Ala para criar funções de integração com o backend, além dos hooks do front.
     let users = []
 
     async function getUsers() {
-        const usersFromApi = await api.get('/enviar')
+        const usersFromApi = await api.get('/cadastro')
         users = usersFromApi.data
         console.log(users)
 
@@ -53,14 +72,14 @@ function cadastro() {
 
                 <div className="direita">
 
-                    <form>
+                    <form  action="http://localhost:3000/enviar" method="post" > 
                         <h1>Crie sua conta</h1>
                         <label htmlFor="email">Email</label>
-                        <input name="email" type="email" placeholder="digite seu email..."/>
+                        <input name="email" id="email" type="email" placeholder="digite seu email..."/>
                         <label htmlFor="usuario">Nome de Usuário</label>
-                        <input name="usuario" type="text" placeholder="digite um nome de usuario..."/>
+                        <input id="nome" name="usuario" type="text" placeholder="digite um nome de usuario..."/>
                         <label htmlFor="senha">Senha</label>
-                        <input name="senha" type="password" placeholder="crie sua senha..." />
+                        <input id="senha" name="senha" type="password" placeholder="crie sua senha..." />
                         <button><img src={enviar} alt="enviar" /></button>
                         
                     </form>
