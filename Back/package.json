@@ -17,7 +17,11 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql2": "^3.11.5",
+<<<<<<< HEAD
     "nodemon": "^3.1.9",
+=======
+    "nodemon": "^3.1.7",
+>>>>>>> 405b049ee8ea75e0ba8fbcb8e2fdf4cca74845a1
     "path": "^0.12.7",
     "sequelize": "^6.37.5"
   }

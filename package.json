@@ -1,6 +1,10 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1"
+=======
+    "axios": "^1.7.9"
+>>>>>>> 405b049ee8ea75e0ba8fbcb8e2fdf4cca74845a1
   }
 }
