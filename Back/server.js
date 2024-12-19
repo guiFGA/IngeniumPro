@@ -1,86 +1,138 @@
-//Esse import tem a mesma função que usar: const express = require('express');
+// Importações de módulos
+import cors from 'cors';
 import express from 'express';
+import bcrypt from 'bcrypt';
+import Sequelize, { where } from 'sequelize';
+import path from 'path';
+import bodyParser from 'body-parser';
+import { type } from 'os';
+import jwt from 'jsonwebtoken'
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()); // Para processar JSON
 
-import bcrypt from 'bcrypt';
-
-//conectar com o banco de dados
-//rodar os comandos "npm install --save sequelize" e "npm install --save mysql2"
-
-import Sequelize from 'sequelize'
-//primeiro parametro = nome do banco, segundo = nome do usuario do banco, terceiro = senha do banco
+// Configuração do banco de dados com Sequelize
 const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
-    host: "localhost", //onde o banco ta hospedado
-    dialect: 'mysql' //qual é o banco de dados
-} 
-)
+    host: 'localhost',
+    dialect: 'mysql',
+});
+// Verificar a conexão com o banco
+sequelize
+    .authenticate()
+    .then(() => console.log('Conectado ao banco de dados com sucesso!'))
+    .catch((erro) => console.log('Falha ao se conectar: ' + erro));
 
-//verificar a conexao
-sequelize.authenticate().then(function(){
-    console.log("Conectado com sucesso!")
-}).catch(function(erro){
-    console.log("Falha ao se conectar: " +erro)
-})
-
-//criando a tabela no banco de dados
-
-const Cadastros = sequelize.define('cadastro',{
-    email:{
-        type: Sequelize.STRING
+// Definição do modelo (tabela) "Cadastros"
+const Cadastros = sequelize.define('cadastro', {
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false, // Impede valores nulos
+        unique: true, // Garante emails únicos
     },
-    senha:{
-        type: Sequelize.STRING
+    senha: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    usuario: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
+});
+
+// Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
+//Cadastros.sync({ force: true });
+
+// Resolver diretório raiz
+const __dirname = path.resolve();
+
+// Rota GET para retornar todos os cadastros
+app.get('/cadastro', async (req, res) => {
+    try {
+        const users = await Cadastros.findAll(); // Busca todos os registros no banco
+        res.json(users);
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Erro ao buscar cadastros');
     }
 
 
-})
+});
 
-//sincronizar a tabela com o codigo
+// Rota POST para cadastrar um usuário
+app.post('/enviar', async (req, res) => {
+    const { email, senha, nome } = req.body;
 
-//Cadastros.sync({force:true})              //DEPOIS QUE CRIAR A TABELA, APAGAAAAAAAAAAAAR OU COMENTAR ESSA LINHA PRA NAO PERDER OS DADOS!!!!!!!!
+    try {
+        // Verificar se o email já existe no banco
+        const userExists = await Cadastros.findOne({ where: { email } });
+        if (userExists) {
+            return res.status(201).send('Email já cadastrado');
+        }
 
-//isso aqui resolve o problema para encontrar os diretorios
-import path from 'path'
-const __dirname = path.resolve() //dirname = a todo o caminho raiz, o que vem antes da pasta presente
+        // Hash da senha usando bcrypt
+        const hashedSenha = await bcrypt.hash(senha, 10);
 
-//enviar um arquivo html para a rota
-app.get('/Cadastro',(req, res) => {
-    res.sendFile(__dirname + '/cadastro.html')
-})
+        // Criar usuário no banco de dados
+        const novoUsuario = await Cadastros.create({
+            email: email,
+            senha: hashedSenha,
+            usuario: nome,
+        });
 
-//utilitario pra processar dados enviados por html 
-import bodyParser from 'body-parser';
-app.use(bodyParser.urlencoded({ extended: true }));
+        res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
 
-
-//rota para capturar os dados do html
-app.post('/enviar', async(req,res) =>{
-    //registrando a captura
-
-    //encriptografando a senha 
-    const senhaCripto = await bcrypt.hash(req.body.senha, 10)
-
-    //salvando os dados
-    Cadastros.create({
-        email: req.body.email,
-        senha: senhaCripto
-     
-    })
-
-    //mensagem de confirmação
-    res.send("Usuário cadastrado com sucesso!!")
-
-})
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Erro ao cadastrar usuário');
+    }
+});
 
 
 
-app.listen(3000, ()=>{
-    console.log("Servidor aberto");
-})
 
-/*
-Rotas precisam de: 
-1)Tipo da rota(GET, POST, PUT, PATCH ou DELETE) -
-2)Endereço
-*/
+
+//rota para realizar login
+
+app.post('/login', async(req, res) =>{
+
+  
+    //pegando os dados do login
+    const {email, senha} = req.body;
+    const user = await Cadastros.findOne({where: {email}});
+
+    //comparando o email e a senha do usuario
+    if(!user || !(await bcrypt.compare(senha, user.senha))){
+       return res.json({ error: 'Email ou senha inválidos' });
+        
+    }
+
+   
+    //criando o token 
+    const SECRET_KEY = 'supersecretkey'
+    const token = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn:'1h'});
+
+    res.json({token});
+
+
+}
+
+
+
+
+
+)
+
+
+
+
+
+
+
+// Inicialização do servidor
+app.listen(3000, () => {
+    console.log('Servidor rodando em http://localhost:3000');
+});
