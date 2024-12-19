@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Para processar JSON
 
 // Configuração do banco de dados com Sequelize
-const sequelize = new Sequelize('IngeniumPro', 'root', 'gUI300805021@', {
+const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
     host: 'localhost',
     dialect: 'mysql',
 });
@@ -41,7 +41,7 @@ const Cadastros = sequelize.define('cadastro', {
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-//Cadastros.sync({ force: true });
+Cadastros.sync({ force: true });
 
 // Resolver diretório raiz
 const __dirname = path.resolve();
@@ -79,6 +79,8 @@ app.post('/enviar', async (req, res) => {
         });
 
         res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
+
+        
     } catch (err) {
         console.log(err);
         res.status(500).send('Erro ao cadastrar usuário');

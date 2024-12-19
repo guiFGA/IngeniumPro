@@ -4,8 +4,9 @@ import api from '../../services/api'
 import logo from '../../assets/logo.svg'
 import enviar from '../../assets/enviar.svg'
 
-
 import { useState } from 'react';
+
+//essa é a rota /cadastro 
 
 function login(email, nome, senha) {
   api
@@ -13,10 +14,12 @@ function login(email, nome, senha) {
     .then(({ data }) => {
 
       alert(data);
+      window.location.href = 'http://localhost:5173/login'
     })
     .catch(err => {
       console.log(err);
     });
+  
 }
 
 function Cadastro() {
@@ -49,7 +52,7 @@ function Cadastro() {
 
           <div className="login">
             <p>Já possui uma conta?</p>
-            <a href="https://www.google.com.br/?hl=pt-BR">login</a>
+            <a href="http://localhost:5173/login">login</a>
           </div>
         </div>
 
