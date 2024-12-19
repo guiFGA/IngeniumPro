@@ -2,10 +2,11 @@
 import cors from 'cors';
 import express from 'express';
 import bcrypt from 'bcrypt';
-import Sequelize from 'sequelize';
+import Sequelize, { where } from 'sequelize';
 import path from 'path';
 import bodyParser from 'body-parser';
 import { type } from 'os';
+import jwt from 'jsonwebtoken'
 
 const app = express();
 app.use(cors());
@@ -41,7 +42,7 @@ const Cadastros = sequelize.define('cadastro', {
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-Cadastros.sync({ force: true });
+//Cadastros.sync({ force: true });
 
 // Resolver diretório raiz
 const __dirname = path.resolve();
@@ -51,10 +52,13 @@ app.get('/cadastro', async (req, res) => {
     try {
         const users = await Cadastros.findAll(); // Busca todos os registros no banco
         res.json(users);
+        
     } catch (err) {
         console.log(err);
         res.status(500).send('Erro ao buscar cadastros');
     }
+
+
 });
 
 // Rota POST para cadastrar um usuário
@@ -86,6 +90,47 @@ app.post('/enviar', async (req, res) => {
         res.status(500).send('Erro ao cadastrar usuário');
     }
 });
+
+
+
+
+
+//rota para realizar login
+
+app.post('/login', async(req, res) =>{
+
+  
+    //pegando os dados do login
+    const {email, senha} = req.body;
+    const user = await Cadastros.findOne({where: {email}});
+
+    //comparando o email e a senha do usuario
+    if(!user || !(await bcrypt.compare(senha, user.senha))){
+       return res.json({ error: 'Email ou senha inválidos' });
+        
+    }
+
+   
+    //criando o token 
+    const SECRET_KEY = 'supersecretkey'
+    const token = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn:'1h'});
+
+    res.json({token});
+
+
+}
+
+
+
+
+
+)
+
+
+
+
+
+
 
 // Inicialização do servidor
 app.listen(3000, () => {

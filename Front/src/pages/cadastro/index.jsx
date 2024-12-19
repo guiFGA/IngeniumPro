@@ -1,8 +1,8 @@
 
 import './style.css'
 import api from '../../services/api'
-import logo from '../../assets/logo.svg'
-import enviar from '../../assets/enviar.svg'
+import logo from '../../assets/imagens/logo.svg'
+import enviar from '../../assets/imagens/enviar.svg'
 
 import { useState } from 'react';
 
