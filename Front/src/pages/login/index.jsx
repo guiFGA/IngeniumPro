@@ -6,21 +6,25 @@ import Entrar from '../../assets/imagens/Entrar.svg'
 
 //essa é a rota /login
 
-
 function comparar(email, senha){
     api
     .post('/login', {email, senha})
-    .then(({ data }) => {
-        alert({data});
+    .then(({ token }) => {
+        alert('Login bem sucedido');
+        window.location.href='http://localhost:5173/'
     })
 
     .catch(err => {
-        console.log(err);
+        // Exibindo a mensagem de erro retornada pela API, caso ocorra um erro (vem pelo campo error do json)
+        if (err.response.data.error) {
+            alert(err.response.data.error); // Exibe a mensagem de erro
+        } else {
+            alert('Erro inesperado! Tente novamente mais tarde.'); // Erro genérico
+        }
     });
     
 
 }
-
 
 
   

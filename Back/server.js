@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Para processar JSON
 
 // Configuração do banco de dados com Sequelize
-const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
-    host: 'localhost',
+const sequelize = new Sequelize('teste', 'teste', '@Teste2025@', {
+    host: '186.226.60.39',
     dialect: 'mysql',
 });
 // Verificar a conexão com o banco
@@ -106,7 +106,7 @@ app.post('/login', async(req, res) =>{
 
     //comparando o email e a senha do usuario
     if(!user || !(await bcrypt.compare(senha, user.senha))){
-       return res.json({ error: 'Email ou senha inválidos' });
+       return res.status(401).json({ error: 'Email ou senha inválidos' });
         
     }
 
