@@ -1,6 +1,7 @@
 import './style.css'
 import api from '../../services/api'
 import { useState } from 'react';
+import logo from '../../assets/imagens/logo.svg'
 
 //essa é a rota /login
 
@@ -40,7 +41,7 @@ const handleSubmit = (e) => {
     
     <div className='container' id='container-login'>
         <header>
-        <h1>teste</h1>
+            <img src={logo} alt="logo" />
         </header>
 
         <div>
