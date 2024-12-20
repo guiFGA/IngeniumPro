@@ -34,7 +34,10 @@ function Cadastro() {
   return (
     <div className="container">
       <header>
-        <img src={logo} alt="logo" />
+        <a href="http://localhost:5173/">
+          <img src={logo} alt="logo" />
+        </a>
+
       </header>
 
       <div className="corpo">

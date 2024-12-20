@@ -42,7 +42,9 @@ const handleSubmit = (e) => {
     
         <div className='container' id='container-login'>
             <header>
-                <img src={logo} alt="logo" />
+                <a href="http://localhost:5173/">
+                    <img src={logo} alt="logo" />
+                </a>
             </header>
 
         <div id="teste">
