@@ -40,7 +40,7 @@ function Cadastro() {
       <div className="corpo">
         <div className="esquerda">
           <div className="seja">
-            <h1>Seja bem vindo ao IngeniumPro</h1>
+            <h1>Seja bem vindo ao Ingenium<span className="pro">Pro</span></h1>
           </div>
 
           <div className="texto">
