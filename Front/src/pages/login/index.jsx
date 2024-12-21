@@ -73,7 +73,7 @@ const handleSubmit = (e) => {
                             value={senha}
                             name='senha'
                         />
-                        <a href="">Esqueceu a senha ?</a>
+                        <a href="http://localhost:5173/redefinirSenha">Esqueceu a senha ?</a>
                         <p>Primeira vez usando o Ingenium<span className='pro'>Pro</span>?</p>
                         <a href="http://localhost:5173/cadastro">Cadastre-se</a>
                         <button type="submit">
