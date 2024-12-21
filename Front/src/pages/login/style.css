@@ -42,6 +42,9 @@ header {
   background-color: rgba(4, 11, 16, 1);
   position: relative;
   border-radius: 1rem;
+  background-image: url('../../assets/imagens/Retangulo.png');
+  background-size: 1700px 750px 600px;
+  background-repeat: no-repeat;
 
 }
 
@@ -52,7 +55,7 @@ header {
   justify-content:flex-start;
   gap: 25px;
   background-color: rgba(2, 16, 22, 1);
-  width: 1100px;
+  width: 1080px;
   height: 650px;
   border-radius: 1rem;
 }

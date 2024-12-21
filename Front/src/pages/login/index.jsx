@@ -61,6 +61,7 @@ const handleSubmit = (e) => {
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            placeholder="Digite seu e-mail"
                             value={email} 
                             name='email' 
                         />
@@ -70,6 +71,7 @@ const handleSubmit = (e) => {
                             type="password"
                             onChange={(e) => setSenha(e.target.value)}
                             required
+                            placeholder="Digite sua senha"
                             value={senha}
                             name='senha'
                         />
