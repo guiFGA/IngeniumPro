@@ -51,7 +51,7 @@ const handleSubmit = (e) => {
                 </a>
             </header>
 
-        <div id="teste">
+            <div id="teste">
                 <div id="caixa_externa">
                     <form id="forms_login" onSubmit={handleSubmit}>
                         <h1>Entrar</h1>
