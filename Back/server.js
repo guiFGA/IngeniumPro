@@ -175,7 +175,7 @@ app.post('/redefinir', async (req, res) => {
         const token = jwt.sign({ id: user.id }, 'seu_segredo', { expiresIn: '1h' });
 
         // Gerar link
-        const link = `${'localhost:5137'}/novasenha/${token}`;
+        const link = `http://localhost:5137/novasenha/${token}`;
 
         // Atualizar usuário com token e expiração
         await user.update({
@@ -198,23 +198,36 @@ app.post('/redefinir', async (req, res) => {
 
 //-------------------------------------------------------------------------------------------------
 
-app.post('/resetar_senha/:token', async (req, res) => {
+app.post('/nova-senha/:token', async (req, res) => {
 
     const { senha } = req.body;
     const { token } = req.params;
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, 'seu_segredo');
         const user = await user.findOne({ where: { id: decoded.id } });
 
         if (!user || user.resetToken !== token || user.resetTokenExpiry < Date.now()) {
             return res.status(400).json({ message: 'Token inválido ou expirado' });
         }
+
+        const hashedPassword = await bcrypt.hash(senha, 10);
+        await user.update({
+            senha: hashedPassword,
+            resetToken: null,
+            resetTokenExpiry: null
+        });
+
+        res.json({ message: 'Senha redefinida com sucesso!' });
     }
-    catch {
-        return res.status(400).json({ message: 'Algo deu errado' });
+    catch(err) {
+        console.error(err);
+        return res.status(400).json({ message: 'Token inválido ou expirado' });
     }
 
+
+
+        
 
 
 

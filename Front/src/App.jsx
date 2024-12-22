@@ -24,7 +24,7 @@ function App() {
         <Route path="/redefinirSenha" element={<Redefinir />} />
 
         {/*rota para redefinir senha*/}
-        <Route path="/novasenha" element={<NovaSenha />} />
+        <Route path="/novasenha/:token" element={<NovaSenha />} />
 
         
 

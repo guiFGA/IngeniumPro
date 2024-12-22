@@ -3,6 +3,10 @@ import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
 import enviar from '../../assets/imagens/enviar.svg'
+import { useParams } from 'react-router-dom';
+
+
+
 
 function NovaSenha() {
     const [senha, setSenha] = useState('');
@@ -10,6 +14,11 @@ function NovaSenha() {
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
+
+    
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { token } = useParams(); // Captura o token da URL
+        
         e.preventDefault(); // Impede o comportamento padrão do formulário
 
         console.log("Botão clicado!"); // Verifica se a função é chamada
@@ -23,9 +32,11 @@ function NovaSenha() {
 
         try {
             console.log("Enviando nova senha para a API..."); // Debug
-            const res = await api.post('/nova-senha', { senha });
+            const res = await api.post(`/nova-senha/${token}`, { senha });
             setMessage(res.data.message); // Mensagem de sucesso recebida do backend
             console.log("Resposta da API:", res.data); // Debug
+
+
         } catch (err) {
             setMessage('Erro ao alterar a senha. Tente novamente.');
             console.error("Erro ao enviar para a API:", err); // Debug

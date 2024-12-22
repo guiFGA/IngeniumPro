@@ -17,6 +17,7 @@ function Redefinir(){
             try {
                 const res = await api.post('/redefinir', { email });
                 setMessage(res.data.message);
+            // eslint-disable-next-line no-unused-vars
             } catch (err) {
                 setMessage('Erro ao enviar email.');
             }
