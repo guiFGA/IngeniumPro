@@ -3,6 +3,7 @@ import Cadastro from './pages/cadastro';
 import Login from './pages/login';
 import Home from './pages/home';
 import Redefinir from './pages/redefinirSenha';
+import NovaSenha from './pages/novaSenha';
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
 
         {/*rota para solicitar redefinição de senha*/}
         <Route path="/redefinirSenha" element={<Redefinir />} />
+
+        {/*rota para redefinir senha*/}
+        <Route path="/novasenha" element={<NovaSenha />} />
 
         
 

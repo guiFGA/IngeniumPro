@@ -175,7 +175,7 @@ app.post('/redefinir', async (req, res) => {
         const token = jwt.sign({ id: user.id }, 'seu_segredo', { expiresIn: '1h' });
 
         // Gerar link
-        const link = `${'localhost:5137'}/mudar_Senha/${token}`;
+        const link = `${'localhost:5137'}/novasenha/${token}`;
 
         // Atualizar usuário com token e expiração
         await user.update({
