@@ -7,18 +7,31 @@ import { useParams } from 'react-router-dom';
 
 
 
+function mudarSenha(senha, token){
+    api.
+    post('/novasenha/:token', {senha}, {token})
+    .then(({ data }) => {
+
+        alert(data);
+        
+      })
+      .catch(err => {
+        console.log(err);
+      });
+}
 
 function NovaSenha() {
     const [senha, setSenha] = useState('');
     const [confirmeSenha, setConfirmeSenha] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
 
     
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { token } = useParams(); // Captura o token da URL
-        
+    const {token} = useParams();
+     console.log("token recebido", token)
+
+    const handleSubmit = async (e) => {
+     
         e.preventDefault(); // Impede o comportamento padrão do formulário
 
         console.log("Botão clicado!"); // Verifica se a função é chamada
@@ -31,17 +44,16 @@ function NovaSenha() {
         }
 
         try {
-            console.log("Enviando nova senha para a API..."); // Debug
-            const res = await api.post(`/nova-senha/${token}`, { senha });
-            setMessage(res.data.message); // Mensagem de sucesso recebida do backend
-            console.log("Resposta da API:", res.data); // Debug
-
+           mudarSenha(senha, token)
 
         } catch (err) {
             setMessage('Erro ao alterar a senha. Tente novamente.');
             console.error("Erro ao enviar para a API:", err); // Debug
         }
     };
+
+
+    
 
     return (
         <div id="container">

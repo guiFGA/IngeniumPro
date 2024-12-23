@@ -44,6 +44,13 @@ const Cadastros = sequelize.define('cadastro', {
     usuario: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+
+    resetToken: {
+        type: Sequelize.STRING
+    },
+    resetTokenExpiry: {
+        type: Sequelize.STRING
     }
 });
 
@@ -136,19 +143,21 @@ app.post('/login', async (req, res) => {
 
 //---------------------------------------------------------------------------------------------------------
 
+
+//funçao pra envio do email
 const sendResetEmail = async (email, link) => {
     try {
-        console.log("guiazevedoo3008@gmail.com e gUI300805021@")
+      
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: "guiazevedoo3008@gmail.com",
-                pass: "zmcg znxz vidm qkhu"
+                user: "ingeniumprosite@gmail.com",
+                pass: "mqgg gcpu aazm ysec"
             },
         });
 
         await transporter.sendMail({
-            from: 'guiazevedoo3008@gmail.com',
+            from: 'ingeniumprosite@gmail.com',
             to: email,
             subject: "Redefinição de Senha",
             html: `<p>Clique no link para redefinir sua senha:</p>
@@ -160,6 +169,7 @@ const sendResetEmail = async (email, link) => {
         throw new Error('Erro ao enviar email');
     }
 };
+
 
 // Rota para redefinir senha
 app.post('/redefinir', async (req, res) => {
@@ -175,7 +185,7 @@ app.post('/redefinir', async (req, res) => {
         const token = jwt.sign({ id: user.id }, 'seu_segredo', { expiresIn: '1h' });
 
         // Gerar link
-        const link = `http://localhost:5137/novasenha/${token}`;
+        const link = `http://localhost:5173/novasenha/${token}`;
 
         // Atualizar usuário com token e expiração
         await user.update({
@@ -198,14 +208,14 @@ app.post('/redefinir', async (req, res) => {
 
 //-------------------------------------------------------------------------------------------------
 
-app.post('/nova-senha/:token', async (req, res) => {
+app.post('/novasenha/:token', async (req, res) => {
 
     const { senha } = req.body;
     const { token } = req.params;
 
     try {
         const decoded = jwt.verify(token, 'seu_segredo');
-        const user = await user.findOne({ where: { id: decoded.id } });
+        const user = await Cadastros.findOne({ where: { id: decoded.id } });
 
         if (!user || user.resetToken !== token || user.resetTokenExpiry < Date.now()) {
             return res.status(400).json({ message: 'Token inválido ou expirado' });
