@@ -182,7 +182,8 @@ app.post('/redefinir', async (req, res) => {
         }
 
         // Criar token JWT
-        const token = jwt.sign({ id: user.id }, 'seu_segredo', { expiresIn: '1h' });
+        const SECRET_KEY = 'supersecretkey'
+        const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
         // Gerar link
         const link = `http://localhost:5173/novasenha/${token}`;
@@ -208,13 +209,15 @@ app.post('/redefinir', async (req, res) => {
 
 //-------------------------------------------------------------------------------------------------
 
-app.post('/novasenha/:token', async (req, res) => {
+app.post('/novasenha', async (req, res) => {
 
-    const { senha } = req.body;
-    const { token } = req.params;
+    const { senha, token } = req.body
+    console.log("token recebido:", token ) //debug
+
+    const SECRET_KEY = 'supersecretkey'
 
     try {
-        const decoded = jwt.verify(token, 'seu_segredo');
+        const decoded = jwt.verify(token, SECRET_KEY);
         const user = await Cadastros.findOne({ where: { id: decoded.id } });
 
         if (!user || user.resetToken !== token || user.resetTokenExpiry < Date.now()) {

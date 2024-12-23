@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 function mudarSenha(senha, token){
     api.
-    post('/novasenha/:token', {senha}, {token})
+    post('/novasenha', {senha, token})
     .then(({ data }) => {
 
         alert(data);
