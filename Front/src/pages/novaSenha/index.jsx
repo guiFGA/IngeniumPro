@@ -3,20 +3,21 @@ import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
 import enviar from '../../assets/imagens/enviar.svg'
-import { useParams } from 'react-router-dom';
+import { data, useParams } from 'react-router-dom';
 
 
 
-function mudarSenha(senha, token){
+function mudarSenha(senha, token, setMessage){
     api.
     post('/novasenha', {senha, token})
     .then(({ data }) => {
 
-        alert(data);
+        alert(data.message);
         
       })
-      .catch(err => {
-        console.log(err);
+      .catch(data => {
+        
+       alert("Token invalido ou expirado")
       });
 }
 
@@ -38,16 +39,16 @@ function NovaSenha() {
 
         // Verifica se as senhas são iguais
         if (senha !== confirmeSenha) {
-            setMessage('As senhas não são iguais. Por favor, corrija.');
+            alert('As senhas não são iguais. Por favor, corrija.');
             console.log("As senhas não são iguais."); // Debug
             return;
         }
 
         try {
-           mudarSenha(senha, token)
+           mudarSenha(senha, token, setMessage)
 
         } catch (err) {
-            setMessage('Erro ao alterar a senha. Tente novamente.');
+            alert('Erro ao alterar a senha. Tente novamente.');
             console.error("Erro ao enviar para a API:", err); // Debug
         }
     };

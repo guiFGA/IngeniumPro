@@ -132,7 +132,9 @@ app.post('/login', async (req, res) => {
     const SECRET_KEY = 'supersecretkey'
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
-    res.json({ token });
+    
+    console.log(token)
+    res.send(token);
 
 
 }
@@ -235,7 +237,7 @@ app.post('/novasenha', async (req, res) => {
     }
     catch(err) {
         console.error(err);
-        return res.status(400).json({ message: 'Token inválido ou expirado' });
+        return res.json({ message: 'Token inválido ou expirado' });
     }
 
 

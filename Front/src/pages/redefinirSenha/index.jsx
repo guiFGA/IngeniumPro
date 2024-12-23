@@ -16,10 +16,10 @@ function Redefinir(){
             e.preventDefault();
             try {
                 const res = await api.post('/redefinir', { email });
-                setMessage(res.data.message);
+                alert("E-mail enviado com sucesso");
             // eslint-disable-next-line no-unused-vars
             } catch (err) {
-                setMessage('Erro ao enviar email.');
+                alert('Erro ao enviar email.');
             }
         };
     

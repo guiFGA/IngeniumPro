@@ -9,8 +9,13 @@ import Entrar from '../../assets/imagens/Entrar.svg'
 function comparar(email, senha){
     api
     .post('/login', {email, senha})
-    .then(({ token }) => {
+    .then(( token ) => {
         alert('Login bem sucedido');
+        // Salva o token no localStorage
+        localStorage.setItem('authToken', JSON.stringify(token));
+
+       
+        console.log("Token armazenado no localStorage:", token);
         window.location.href='http://localhost:5173/'
     })
 
