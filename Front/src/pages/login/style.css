@@ -1,2 +1,63 @@
 
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(180deg, #020B13 0%, rgba(3, 9, 14, 1) 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  
+}
+
+header {
+  
+  width: 2000px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  }
+
+
+#teste{
+    height: 100%; /* Garante que o body ocupe toda a altura da página */
+    margin: 0; /* Remove margens padrão */
+    display: flex; /* Ativa o layout flex para o body */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    
+  }
+
+#caixa_externa{
+
+  height: 750px;
+  width: 1150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(4, 11, 16, 1);
+  position: relative;
+  border-radius: 1rem;
+  background-image: url('../../assets/imagens/Retangulo.png');
+  background-size: 1700px 750px 600px;
+  background-repeat: no-repeat;
+
+}
+
+
+#forms_login{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  gap: 25px;
+  background-color: rgba(2, 16, 22, 1);
+  width: 1080px;
+  height: 650px;
+  border-radius: 1rem;
+}
+
     

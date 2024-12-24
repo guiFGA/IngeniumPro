@@ -1,0 +1,46 @@
+
+#fundo1{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#fundo_extra{
+    
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 750px;
+    width: 1250px;
+    background-image: url('../../assets/imagens/Retangulo.png');
+    background-size: 1700px 750px 500px;
+    background-repeat: no-repeat;
+
+}   
+#fundo2{
+    background-color: rgba(2, 16, 22, 1);
+    height: 650px;
+    width: 1150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
+    
+}
+    
+#forms_redefinir{
+    height: 450px;
+    width: 900px;
+    background-color: rgba(4, 11, 16, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    gap: 30px;
+    border-radius: 0rem 1rem 1rem 0rem;
+    background-image: url('../../assets/imagens/Retangulo.png');
+    background-size: 1700px 750px;
+    background-repeat: no-repeat;
+}
+

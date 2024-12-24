@@ -1,4 +1,3 @@
-
 import './style.css'
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
@@ -35,13 +34,16 @@ function Cadastro() {
   return (
     <div className="container">
       <header>
-        <img src={logo} alt="logo" />
+        <a href="http://localhost:5173/">
+          <img src={logo} alt="logo" />
+        </a>
+
       </header>
 
       <div className="corpo">
         <div className="esquerda">
           <div className="seja">
-            <h1>Seja bem vindo ao IngeniumPro</h1>
+            <h1>Seja bem vindo ao Ingenium<span className="pro">Pro</span></h1>
           </div>
 
           <div className="texto">

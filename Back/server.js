@@ -7,15 +7,21 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import { type } from 'os';
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
+
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Para processar JSON
 
+
+//----------------------------------------------------------------------------------
+
+
 // Configuração do banco de dados com Sequelize
-const sequelize = new Sequelize('IngeniumPro', 'root', '12345678', {
-    host: 'localhost',
+const sequelize = new Sequelize('teste', 'teste', '@Teste2025@', {
+    host: '186.226.60.39',
     dialect: 'mysql',
 });
 // Verificar a conexão com o banco
@@ -38,6 +44,13 @@ const Cadastros = sequelize.define('cadastro', {
     usuario: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+
+    resetToken: {
+        type: Sequelize.STRING
+    },
+    resetTokenExpiry: {
+        type: Sequelize.STRING
     }
 });
 
@@ -52,7 +65,7 @@ app.get('/cadastro', async (req, res) => {
     try {
         const users = await Cadastros.findAll(); // Busca todos os registros no banco
         res.json(users);
-        
+
     } catch (err) {
         console.log(err);
         res.status(500).send('Erro ao buscar cadastros');
@@ -60,6 +73,10 @@ app.get('/cadastro', async (req, res) => {
 
 
 });
+
+
+//-----------------------------------------------------------------------------------------------------
+
 
 // Rota POST para cadastrar um usuário
 app.post('/enviar', async (req, res) => {
@@ -84,7 +101,7 @@ app.post('/enviar', async (req, res) => {
 
         res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
 
-        
+
     } catch (err) {
         console.log(err);
         res.status(500).send('Erro ao cadastrar usuário');
@@ -92,44 +109,146 @@ app.post('/enviar', async (req, res) => {
 });
 
 
-
+//----------------------------------------------------------------------------------------------
 
 
 //rota para realizar login
 
-app.post('/login', async(req, res) =>{
+app.post('/login', async (req, res) => {
 
-  
+
     //pegando os dados do login
-    const {email, senha} = req.body;
-    const user = await Cadastros.findOne({where: {email}});
+    const { email, senha } = req.body;
+    const user = await Cadastros.findOne({ where: { email } });
 
     //comparando o email e a senha do usuario
-    if(!user || !(await bcrypt.compare(senha, user.senha))){
-       return res.json({ error: 'Email ou senha inválidos' });
-        
+    if (!user || !(await bcrypt.compare(senha, user.senha))) {
+        return res.status(401).json({ error: 'Email ou senha inválidos' });
+
     }
 
-   
+
     //criando o token 
     const SECRET_KEY = 'supersecretkey'
-    const token = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn:'1h'});
+    const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
-    res.json({token});
+    
+    console.log(token)
+    res.send(token);
 
 
 }
-
-
-
-
-
 )
 
 
 
 
+//---------------------------------------------------------------------------------------------------------
 
+
+//funçao pra envio do email
+const sendResetEmail = async (email, link) => {
+    try {
+      
+        const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: "ingeniumprosite@gmail.com",
+                pass: "mqgg gcpu aazm ysec"
+            },
+        });
+
+        await transporter.sendMail({
+            from: 'ingeniumprosite@gmail.com',
+            to: email,
+            subject: "Redefinição de Senha",
+            html: `<p>Clique no link para redefinir sua senha:</p>
+                   <a href="${link}">${link}</a>`
+        });
+
+    } catch (error) {
+        console.error('Erro ao enviar email:', error);
+        throw new Error('Erro ao enviar email');
+    }
+};
+
+
+// Rota para redefinir senha
+app.post('/redefinir', async (req, res) => {
+    try {
+        // Verificar se existe o email do usuário
+        const { email } = req.body;
+        const user = await Cadastros.findOne({ where: { email } });
+        if (!user) {
+            return res.status(404).json({ error: 'Email não encontrado' });
+        }
+
+        // Criar token JWT
+        const SECRET_KEY = 'supersecretkey'
+        const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
+
+        // Gerar link
+        const link = `http://localhost:5173/novasenha/${token}`;
+
+        // Atualizar usuário com token e expiração
+        await user.update({
+            resetToken: token,
+            resetTokenExpiry: Date.now() + 3600000, // 1 hora
+        });
+
+        // Enviar e-mail
+        await sendResetEmail(email, link);
+
+        res.json({ message: 'Email enviado com sucesso!' });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+
+
+//-------------------------------------------------------------------------------------------------
+
+app.post('/novasenha', async (req, res) => {
+
+    const { senha, token } = req.body
+    console.log("token recebido:", token ) //debug
+
+    const SECRET_KEY = 'supersecretkey'
+
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY);
+        const user = await Cadastros.findOne({ where: { id: decoded.id } });
+
+        if (!user || user.resetToken !== token || user.resetTokenExpiry < Date.now()) {
+            return res.status(400).json({ message: 'Token inválido ou expirado' });
+        }
+
+        const hashedPassword = await bcrypt.hash(senha, 10);
+        await user.update({
+            senha: hashedPassword,
+            resetToken: null,
+            resetTokenExpiry: null
+        });
+
+        res.json({ message: 'Senha redefinida com sucesso!' });
+    }
+    catch(err) {
+        console.error(err);
+        return res.json({ message: 'Token inválido ou expirado' });
+    }
+
+
+
+        
+
+
+
+
+}
+)
 
 
 // Inicialização do servidor
