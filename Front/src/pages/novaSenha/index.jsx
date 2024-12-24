@@ -13,6 +13,7 @@ function mudarSenha(senha, token, setMessage){
     .then(({ data }) => {
 
         alert(data.message);
+        window.location.href = 'http://localhost:5173'
         
       })
       .catch(data => {

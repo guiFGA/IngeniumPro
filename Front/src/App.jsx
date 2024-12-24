@@ -4,7 +4,8 @@ import Login from './pages/login';
 import Home from './pages/home';
 import Redefinir from './pages/redefinirSenha';
 import NovaSenha from './pages/novaSenha';
-
+import PrivateRoute from './PrivateRoutes';
+import Escolher from './pages/escolherEngenharia';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
 
         {/*rota para redefinir senha*/}
         <Route path="/novasenha/:token" element={<NovaSenha />} />
+
+        <Route path="/escolherEngenharia" element={<PrivateRoute><Escolher/></PrivateRoute>} />
 
         
 

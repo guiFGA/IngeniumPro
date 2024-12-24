@@ -12,7 +12,7 @@ function comparar(email, senha){
     .then(( token ) => {
         alert('Login bem sucedido');
         // Salva o token no localStorage
-        localStorage.setItem('authToken', JSON.stringify(token));
+        sessionStorage.setItem('authToken', JSON.stringify(token));
 
        
         console.log("Token armazenado no localStorage:", token);
