@@ -6,7 +6,6 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   align-items: center;
   
 }

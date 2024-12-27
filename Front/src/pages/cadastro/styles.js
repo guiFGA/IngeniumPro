@@ -40,7 +40,7 @@ export const Esquerda = styled.div`
     justify-content: space-around;
     background-color: #040B10;
     width: 30vw;
-    height: 50vh;
+    height: 65vh;
     flex-direction: column;
 `
 
@@ -51,7 +51,7 @@ export const Direita = styled.div`
     position: relative;
     background-color: #021016;
     width: 30vw;
-    height: 50vh;
+    height: 65vh;
     border-radius: 1rem;
 `
 
@@ -60,13 +60,16 @@ export const Form = styled.form`
     position: relative;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 26vw;
-    height: 45vh;
+    height: 60vh;
     border: 1px solid transparent;
     border-radius: 0.1em;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1)) 1;
     gap: 15px;
+    margin-top: 2.5rem;
+    padding-top: 3rem;
+
 `
 
 export const Inputs = styled.input`

@@ -5,7 +5,7 @@ import logo from '../../assets/imagens/logo.svg'
 import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, AjusteBotao} from './styles'
 import { useState } from 'react';
 
-// import { Botao } from '../../components/botao/styles'
+import { Botao } from '../../components/botao/styles'
 
 //essa é a rota /cadastro 
 
@@ -95,11 +95,12 @@ function Cadastro() {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-            <AjusteBotao>
+
               <Botao type="submit">
                   Enviar
               </Botao>
-            </AjusteBotao>
+
+
           </Form>
         </Direita>
       </Corpo>

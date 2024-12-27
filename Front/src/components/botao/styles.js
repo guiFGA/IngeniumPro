@@ -5,7 +5,7 @@ export const Botao = styled.button`
     color: white;
     width: 10vw;
     height: 5vh;
-    font-size: 100px;
+    font-size: 15px;
     cursor: pointer;
     justify-content: center;
     border: 1px solid transparent;
