@@ -3,6 +3,7 @@ import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
 import Entrar from '../../assets/imagens/Entrar.svg'
+import { Botao } from '../../components/botao/styles';
 
 //essa é a rota /login
 
@@ -83,9 +84,7 @@ const handleSubmit = (e) => {
                         <a href="http://localhost:5173/redefinirSenha">Esqueceu a senha ?</a>
                         <p>Primeira vez usando o Ingenium<span className='pro'>Pro</span>?</p>
                         <a href="http://localhost:5173/cadastro">Cadastre-se</a>
-                        <button type="submit">
-                            <img src={Entrar} alt="enviar formulário" />
-                        </button>
+                        <Botao type="submit">Entrar</Botao>
                     </form>
                 </div>
             </div>

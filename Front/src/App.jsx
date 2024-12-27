@@ -29,9 +29,6 @@ function App() {
 
         <Route path="/escolherEngenharia" element={<PrivateRoute><Escolher/></PrivateRoute>} />
 
-        
-
-
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />
       </Routes>

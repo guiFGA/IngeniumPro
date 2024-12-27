@@ -45,7 +45,6 @@ header img{
   position: relative;
   left: 140px;
   top: 20px
- 
 }
 
 
@@ -117,7 +116,6 @@ a{
 }
 
 form{
-  
   height: 550px;
   width: 700px;
   bottom: 20px;
@@ -130,28 +128,6 @@ form{
   flex-direction: column;
   align-items: center;
   gap: 15px;
-}
-
-form h1{
-  position: relative;
-  top: 20px;
-}
-
-label{
-  position: relative;
-  top: 15px;
-}
-
-input{
-  padding: 0.5rem;
-  background-color: white;
-  border: none;
-  border-radius: 1rem;
-  width: 400px;
-  position: relative;
-  top: 15px;
-
-
 }
 
 form button{
