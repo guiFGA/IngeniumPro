@@ -69,6 +69,7 @@ export const Form = styled.form`
     gap: 15px;
     margin-top: 2.5rem;
     padding-top: 3rem;
+    background-color: #040B10;
 
 `
 
@@ -84,4 +85,9 @@ export const AjusteBotao = styled.div`
     display: flex;
     position: relative;
     margin-top: -10vh;
+`
+export const Texto = styled.div`
+    width: 400px;
+    position: relative;
+    bottom: 100px;
 `

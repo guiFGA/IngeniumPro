@@ -2,7 +2,7 @@ import './style.css'
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
 //import enviar from '../../assets/imagens/enviar.svg'
-import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, AjusteBotao} from './styles'
+import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto} from './styles'
 import { useState } from 'react';
 
 import { Botao } from '../../components/botao/styles'
