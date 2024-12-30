@@ -1,9 +1,8 @@
-import './style.css'
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
-import enviar from '../../assets/imagens/enviar.svg'
-
+import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto, LoginEsquerda, Seja, Azul} from './cadastro'
 import { useState } from 'react';
+import { Botao } from '../../components/botao/styles'
 
 //essa é a rota /cadastro 
 
@@ -32,37 +31,38 @@ function Cadastro() {
   };
 
   return (
-    <div className="container">
-      <header>
+    <Container>
+      <Header>
         <a href="http://localhost:5173/">
           <img src={logo} alt="logo" />
         </a>
 
-      </header>
+      </Header>
 
-      <div className="corpo">
-        <div className="esquerda">
-          <div className="seja">
-            <h1>Seja bem vindo ao Ingenium<span className="pro">Pro</span></h1>
-          </div>
+      <Corpo>
+        <Esquerda>
+          <Seja>
+            <h1>Seja bem vindo ao Ingenium<Azul>Pro</Azul></h1> 
+            
+          </Seja>
 
-          <div className="texto">
+          <Texto>
             <p>Cadastre-se para obter acesso a todas</p>
             <p>as funcionalidades e fazer parte da </p>
             <p>nossa comunidade</p>
-          </div>
+          </Texto>
 
-          <div className="login">
+         <LoginEsquerda>
             <p>Já possui uma conta?</p>
-            <a href="http://localhost:5173/login">login</a>
-          </div>
-        </div>
+            <LoginLink href="http://localhost:5173/login">login</LoginLink>
+          </LoginEsquerda>
+        </Esquerda>
 
-        <div className="direita">
-          <form onSubmit={handleSubmit}>
+        <Direita>
+          <Form onSubmit={handleSubmit}>
             <h1>Crie sua conta</h1>
             <label htmlFor="email">Email</label>
-            <input
+            <Inputs
               name="email"
               id="email"
               type="email"
@@ -73,7 +73,7 @@ function Cadastro() {
             />
 
             <label htmlFor="usuario">Nome de Usuário</label>
-            <input
+            <Inputs
               id="nome"
               name="nome"
               type="text"
@@ -84,7 +84,7 @@ function Cadastro() {
             />
 
             <label htmlFor="senha">Senha</label>
-            <input
+            <Inputs
               id="senha"
               name="senha"
               type="password"
@@ -93,14 +93,16 @@ function Cadastro() {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
+              <br />
+              <Botao type="submit">
+                  Enviar
+              </Botao>
 
-            <button type="submit">
-              <img src={enviar} alt="enviar formulário" />
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+
+          </Form>
+        </Direita>
+      </Corpo>
+    </Container>
   );
 }
 

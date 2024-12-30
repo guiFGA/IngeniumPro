@@ -1,8 +1,8 @@
-import '../redefinirSenha/style.css'
 import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
-import enviar from '../../assets/imagens/enviar.svg'
+import { Botao } from '../../components/botao/styles';
+import { Container, Header, Fundo1, Fundo2, FundoExtra, Form, Inputs, Azul } from './redefinirSenha';
 
 function Redefinir(){
 
@@ -24,28 +24,24 @@ function Redefinir(){
         };
     
 
-
-
-
-
     return(
         
-        <div id="container">
-            <header>
+        <Container>
+            <Header>
                 <a href="http://localhost:5173/">
                     <img src={logo} alt="logo" />
                 </a>                
-            </header>
+            </Header>
 
-            <div id="fundo1">
-                <div id="fundo_extra">
-                    <div id="fundo2">
-                        <form id="forms_redefinir" onSubmit={handleSubmit}>
+            <Fundo1>
+                <FundoExtra>
+                    <Fundo2>
+                        <Form onSubmit={handleSubmit}>
                             <h1>Redefinir Senha</h1>
                             <p>Digite o endereço de email associado a sua conta.</p>
-                            <p>Enviaremos um <span className="azul">link</span> para <span className="azul">redefinir sua senha</span></p>
+                            <p>Enviaremos um <Azul>link</Azul> para <Azul>redefinir sua senha</Azul></p>
 
-                            <input 
+                            <Inputs
                                 type="email" 
                                 placeholder="Digite seu e-mail" 
                                 name="email" 
@@ -54,16 +50,13 @@ function Redefinir(){
                             />
 
                             <p>Se o e-mail estiver registrado, você receberá instruções para redefinir sua senha em alguns minutos</p>
-                            <button type="submit">
-                                <img src={enviar} alt="enviar formulário" />
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                            <Botao>Enviar</Botao>
+                        </Form>
+                    </Fundo2>
+                </FundoExtra>
+            </Fundo1>
 
-            </div>
-
-        </div>
+        </Container>
     )
 }
 export default Redefinir;
