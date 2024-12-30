@@ -1,9 +1,9 @@
-import '../novaSenha/style.css'
 import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
-import enviar from '../../assets/imagens/enviar.svg'
 import { data, useParams } from 'react-router-dom';
+import {Botao} from '../../components/botao/styles'
+import { Container, Header, Fundo1, FundoExtra, Fundo2, Form, Inputs, Azul } from './novaSenha';
 
 
 
@@ -54,32 +54,29 @@ function NovaSenha() {
         }
     };
 
-
-    
-
     return (
-        <div id="container">
-            <header>
+        <Container>
+            <Header>
                 <a href="http://localhost:5173/">
                     <img src={logo} alt="logo" />
                 </a>
-            </header>
+            </Header>
 
-            <div id="fundo1">
-                <div id="fundo_extra">
-                    <div id="fundo2">
-                        <form id="forms_redefinir" onSubmit={handleSubmit}>
-                            <h1>Altere sua <span className='azul'>senha</span></h1>
-                            <p>Digite sua nova senha</p>
+            <Fundo1>
+                <FundoExtra>
+                    <Fundo2>
+                        <Form onSubmit={handleSubmit}>
+                            <h1>Altere sua <Azul>senha</Azul></h1>
+                            <p>Digite sua <Azul>nova</Azul> senha</p>
 
-                            <input
+                            <Inputs
                                 type="password"
                                 placeholder="Digite sua senha"
                                 name="senha"
                                 onChange={(e) => setSenha(e.target.value)}
                                 required
                             />
-                            <input
+                            <Inputs
                                 type="password"
                                 placeholder="Confirme a senha"
                                 name="confirmeSenha"
@@ -88,17 +85,15 @@ function NovaSenha() {
                             />
 
                             <p>Certifique-se que as senhas digitadas nos dois campos são <span className='azul'>iguais</span></p>
-                            <button type="submit">
-                                <img src={enviar} alt="enviar formulário" />
-                            </button>
+                            <Botao>Enviar</Botao>
 
                             {/* Exibição da mensagem de feedback */}
                             {message && <p className="feedback-message">{message}</p>}
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </Form> 
+                    </Fundo2>
+                </FundoExtra>
+            </Fundo1>
+        </Container>
     );
 }
 
