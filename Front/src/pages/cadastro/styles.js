@@ -67,7 +67,6 @@ export const Form = styled.form`
     border-radius: 0.1em;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1)) 1;
     gap: 15px;
-    margin-top: 2.5rem;
     padding-top: 3rem;
     background-color: #040B10;
 
@@ -81,13 +80,24 @@ export const Inputs = styled.input`
     width: 16vw;
 `
 
-export const AjusteBotao = styled.div`
-    display: flex;
-    position: relative;
-    margin-top: -10vh;
-`
 export const Texto = styled.div`
     width: 400px;
     position: relative;
     bottom: 100px;
+`
+
+export const LoginEsquerda = styled.div`
+    position: relative;
+    bottom: 200px;
+    right: 100px;
+    display: flex;
+    gap: 8px;
+`
+
+export const Seja = styled.div`
+    width: 400px;
+`
+
+export const Azul = styled.span`
+    color: #00D0FF;
 `

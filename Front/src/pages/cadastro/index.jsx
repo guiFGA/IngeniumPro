@@ -1,8 +1,8 @@
-import './style.css'
+
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
 //import enviar from '../../assets/imagens/enviar.svg'
-import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto} from './styles'
+import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto, LoginEsquerda, Seja, Azul} from './styles'
 import { useState } from 'react';
 
 import { Botao } from '../../components/botao/styles'
@@ -44,20 +44,21 @@ function Cadastro() {
 
       <Corpo>
         <Esquerda>
-          <div className="seja">
-            <h1>Seja bem vindo ao Ingenium<span className="pro">Pro</span></h1>
-          </div>
+          <Seja>
+            <h1>Seja bem vindo ao Ingenium<Azul>Pro</Azul></h1> 
+            
+          </Seja>
 
-          <div className="texto">
+          <Texto>
             <p>Cadastre-se para obter acesso a todas</p>
             <p>as funcionalidades e fazer parte da </p>
             <p>nossa comunidade</p>
-          </div>
+          </Texto>
 
-          <div className="login">
+         <LoginEsquerda>
             <p>Já possui uma conta?</p>
             <LoginLink href="http://localhost:5173/login">login</LoginLink>
-          </div>
+          </LoginEsquerda>
         </Esquerda>
 
         <Direita>
