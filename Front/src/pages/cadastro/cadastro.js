@@ -15,6 +15,7 @@ export const Header = styled.header`
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-left: 5rem;
 `;
 
 export const LoginLink = styled.a`
@@ -44,6 +45,7 @@ export const Esquerda = styled.div`
     width: 30vw;
     height: 65vh;
     flex-direction: column;
+    color: #fff;
 `
 
 export const Direita = styled.div`
@@ -71,7 +73,7 @@ export const Form = styled.form`
     gap: 15px;
     padding-top: 3rem;
     background-color: #040B10;
-
+    color: #fff;
 `
 
 export const Inputs = styled.input`

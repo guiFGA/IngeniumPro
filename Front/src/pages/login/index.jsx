@@ -1,9 +1,8 @@
-import '../login/style.css'
 import api from '../../services/api'
 import { useState } from 'react';
 import logo from '../../assets/imagens/logo.svg'
-import Entrar from '../../assets/imagens/Entrar.svg'
 import { Botao } from '../../components/botao/styles';
+import { Container, Header, CaixaExterna, CaixaInterna, Form, Azul, Links, Inputs} from './login';
 
 //essa é a rota /login
 
@@ -28,12 +27,7 @@ function comparar(email, senha){
             alert('Erro inesperado! Tente novamente mais tarde.'); // Erro genérico
         }
     });
-    
-
-}
-
-
-  
+}  
 
 function Login(){
 
@@ -45,25 +39,22 @@ const handleSubmit = (e) => {
     comparar(email, senha);
 };
 
-
-
-
     return(
     
-        <div className='container' id='container-login'>
-            <header>
+        <Container>
+            <Header>
                 <a href="http://localhost:5173/">
                     <img src={logo} alt="logo" />
                 </a>
-            </header>
+            </Header>
 
-            <div id="teste">
-                <div id="caixa_externa">
-                    <form id="forms_login" onSubmit={handleSubmit}>
+            <CaixaExterna>
+                <CaixaInterna>
+                    <Form onSubmit={handleSubmit}>
                         <h1>Entrar</h1>
-                        <p id="texto_login">Faça login no Ingenium<span className="pro">Pro</span> usando seu e-mail ou o nome de usuário com o qual você se registrou.</p>
+                        <p id="texto_login">Faça login no Ingenium<Azul>Pro</Azul> usando seu e-mail ou o nome de usuário com o qual você se registrou.</p>
                         <label htmlFor="email">email</label>
-                        <input 
+                        <Inputs
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -73,7 +64,7 @@ const handleSubmit = (e) => {
                         />
 
                         <label htmlFor="password">senha</label>
-                        <input 
+                        <Inputs
                             type="password"
                             onChange={(e) => setSenha(e.target.value)}
                             required
@@ -81,14 +72,14 @@ const handleSubmit = (e) => {
                             value={senha}
                             name='senha'
                         />
-                        <a href="http://localhost:5173/redefinirSenha">Esqueceu a senha ?</a>
-                        <p>Primeira vez usando o Ingenium<span className='pro'>Pro</span>?</p>
-                        <a href="http://localhost:5173/cadastro">Cadastre-se</a>
+                        <Links href="http://localhost:5173/redefinirSenha">Esqueceu a senha ?</Links>
+                        <p>Primeira vez usando o Ingenium<Azul>Pro</Azul>?</p>
+                        <Links href="http://localhost:5173/cadastro">Cadastre-se</Links>
                         <Botao type="submit">Entrar</Botao>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </Form>
+                </CaixaInterna>
+            </CaixaExterna>
+        </Container>
     )
 }
 
