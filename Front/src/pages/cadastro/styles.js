@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px
 `;
 
 export const Header = styled.header`
@@ -27,7 +28,8 @@ export const Corpo = styled.div`
     justify-content: center;
     position: relative;
     width: 70vw;
-    height: 70vh;
+    height: 75vh;
+    background-color: rgba(4, 11, 16, 1);
     border: 1px solid transparent;
     border-radius: 1rem;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1)) 1;

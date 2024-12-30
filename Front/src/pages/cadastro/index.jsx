@@ -96,7 +96,7 @@ function Cadastro() {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-
+              <br />
               <Botao type="submit">
                   Enviar
               </Botao>
