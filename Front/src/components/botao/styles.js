@@ -11,4 +11,5 @@ export const Botao = styled.button`
     border: 1px solid transparent;
     border-radius: 3em;
     border-image: linear-gradient(to left, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))1;
+
 `;
