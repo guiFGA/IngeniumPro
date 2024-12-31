@@ -45,9 +45,9 @@ export const Main = styled.main`
     align-items: center; /* Centraliza o botão horizontalmente */
     justify-content: space-between;
     width: 100%;
-    min-height: 100vh; /* Preenche a altura da viewport */
+    gap: 20vh;
     padding: 100px;
-    margin-top: 3vh;
+    margin-top: 6vh;
 `;
 
 export const Azul = styled.span`
