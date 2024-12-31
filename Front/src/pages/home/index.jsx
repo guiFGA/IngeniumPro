@@ -2,6 +2,7 @@ import api from '../../services/api'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import logo from '../../assets/imagens/logo.svg'
+import linha from '../../assets/imagens/DesignLinha.svg'
 import { NavBar, NavLinks, Nav, TextoEsquerda, TextoDireita, Azul, Main, BemVindo} from './home';
 import { Botao } from '../../components/botao/styles'
 
@@ -45,6 +46,7 @@ function Home(){
                 <TextoEsquerda>
                     <h1>É hora de <Azul>Inovar</Azul></h1>
                     <p>Esse é seu momento de mudar <br />o mundo</p>
+                    <img src={linha} alt="logo" />
                 </TextoEsquerda>
                 <TextoDireita>
                     <p><BemVindo>Bem-vindo</BemVindo> senhor(a) sou a mais nova<br /> plataforma de 
@@ -54,6 +56,7 @@ function Home(){
                 
                 <Botao onClick={handleStartClick}>Começar</Botao>
             </Main>
+
         </>
     )
 

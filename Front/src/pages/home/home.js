@@ -68,6 +68,7 @@ export const TextoDireita = styled.div`
     text-align: right;
     width: 75%;
     font-size: 19px;
+    margin-top: -30vh;
 `;
 
 export const BemVindo = styled.span`
@@ -87,3 +88,5 @@ export const Botao = styled.button`
 
 
 `;
+
+//------------------------Footer-------------------------
