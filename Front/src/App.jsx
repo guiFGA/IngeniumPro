@@ -6,6 +6,7 @@ import Redefinir from './pages/redefinirSenha';
 import NovaSenha from './pages/novaSenha';
 import PrivateRoute from './PrivateRoutes';
 import Escolher from './pages/escolherEngenharia';
+import Perfil from './pages/perfil';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         <Route path="/novasenha/:token" element={<NovaSenha />} />
 
         <Route path="/escolherEngenharia" element={<PrivateRoute><Escolher/></PrivateRoute>} />
+
+        {/*rota para página de perfil*/}
+        <Route path="/perfil" element={<PrivateRoute><Perfil/></PrivateRoute>} />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />
