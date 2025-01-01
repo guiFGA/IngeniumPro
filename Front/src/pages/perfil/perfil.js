@@ -66,17 +66,23 @@ export const Caixas = styled.div`
 `
 export const CaixaDirCima = styled.div`
     display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    color: #fff;
     width: 50vw;
     height: 35vh;
     border: 1px solid transparent;
     border-radius: 1rem;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1)) 1;  
     background-color: rgba(4, 11, 16, 1);     
-    box-shadow: 2px 2px;  
+    box-shadow: 2px 2px rgb(0, 0, 0);  
 `
 
 export const CaixaDirBaixo = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 80px;
     width: 50vw;
     height: 35vh;
     border: 1px solid transparent;
@@ -134,10 +140,7 @@ export const Engenharia = styled.div`
     position: relative;
     margin-left: 20px;
 `
-/*
-    margin-left: auto;
-    margin-right: 13vw;
 
-    align-items: left;
-    margin-left: 13vw;
-*/
+/*--------------------Elementos Caixa Direita Cima-------------------------------*/
+
+

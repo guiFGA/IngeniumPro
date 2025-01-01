@@ -2,6 +2,8 @@ import logo from '../../assets/imagens/logo.svg'
 import { NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo, 
         Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul} from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
+import manutencao from '../../assets/imagens/Manutencao.svg'
+import breve from '../../assets/imagens/Breve.svg'
 
 function Perfil(){
     return(
@@ -52,13 +54,11 @@ function Perfil(){
 
                 <Caixas>
                     <CaixaDirCima>
-
-    
+                        <h2>Progresso</h2>
                     </CaixaDirCima>
 
                     <CaixaDirBaixo>
-
-    
+                        <img src={breve} alt="Imagem de manutenção" />
                     </CaixaDirBaixo>
                 </Caixas>
 
