@@ -39,7 +39,7 @@ function Perfil(){
                     
                     <Meio>
                         <p><Azul>E</Azul>mail: </p>
-                        <p><Azul>S</Azul>Gênero: </p>
+                        <p><Azul>G</Azul>ênero: </p>
                         <p><Azul>V</Azul>ersão: Beta <Azul>1.0v</Azul></p>
                     </Meio>
 
