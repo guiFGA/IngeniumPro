@@ -132,7 +132,7 @@ app.post('/login', async (req, res) => {
     const SECRET_KEY = 'supersecretkey'
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
-    
+
     console.log(token)
     res.send(token);
 
@@ -149,7 +149,7 @@ app.post('/login', async (req, res) => {
 //funçao pra envio do email
 const sendResetEmail = async (email, link) => {
     try {
-      
+
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
@@ -214,7 +214,7 @@ app.post('/redefinir', async (req, res) => {
 app.post('/novasenha', async (req, res) => {
 
     const { senha, token } = req.body
-    console.log("token recebido:", token ) //debug
+    console.log("token recebido:", token) //debug
 
     const SECRET_KEY = 'supersecretkey'
 
@@ -235,21 +235,60 @@ app.post('/novasenha', async (req, res) => {
 
         res.json({ message: 'Senha redefinida com sucesso!' });
     }
-    catch(err) {
+    catch (err) {
         console.error(err);
         return res.json({ message: 'Token inválido ou expirado' });
     }
 
 
 
-        
+
 
 
 
 
 }
 )
+//--------------------------------------------------------------------------------------
 
+
+// Middleware para verificar o token
+function verificarToken(req, res, next) {
+    const SECRET_KEY = 'supersecretkey'
+
+    const token = req.headers['authorization'];
+
+    if (!token) return res.status(401).send('Acesso negado!');
+
+    const tokenFinal = token.split(' ')[1]; // Pega o token após 'Bearer'
+
+    if (!tokenFinal) return res.status(401).send('Token malformado!');
+
+
+    
+
+    
+}
+
+// Rota protegida para buscar o usuário logado
+app.get('/usuario', verificarToken, async (req, res) => {
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY); // Decodifica o token
+        req.userId = decoded.id; // Extrai o ID do usuário
+        next();
+        const user = await Cadastros.findOne({ where: { id: req.userId } });
+
+        if (user) {
+            res.json(user);
+        } else {
+            res.status(404).json({ mensagem: 'Usuário não encontrado' });
+        }
+    } catch (err) {
+        res.status(401).send('Token inválido!');
+    }
+
+    
+});
 
 // Inicialização do servidor
 app.listen(3000, () => {

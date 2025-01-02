@@ -1,19 +1,55 @@
 import logo from '../../assets/imagens/logo.svg'
-import { NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo, 
-        Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul} from './perfil';
+import {
+    NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
+    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul
+} from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
+import React, { useEffect } from 'react';
+import api from '../../services/api';
 
-function Perfil(){
-    return(
+
+
+
+
+
+function Perfil() {
+
+    function enviar() {
+
+        const token = sessionStorage.getItem("authToken")
+
+        api
+            .get('/usuario', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(({ data }) => {
+    
+                alert(data);
+    
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    useEffect(() => {
+        enviar(); // Chamada quando o componente é montado
+    }, []); // O array vazio [] garante que só será chamado uma vez
+
+    
+
+    return (
         <div>
             <header>
                 <Nav>
                     <div className="logo">
                         <a href="http://localhost:5173/">
                             <img src={logo} alt="logo" />
-                        </a>                    
+                        </a>
                     </div>
                     <div className="links">
                         <NavBar>
@@ -23,7 +59,7 @@ function Perfil(){
                             <li><NavLinks href="http://localhost:5173/">Perfil</NavLinks></li>
                         </NavBar>
                     </div>
-                </Nav>                
+                </Nav>
             </header>
 
             <Main>
@@ -36,7 +72,7 @@ function Perfil(){
                             <p>Nome de perfil</p>
                         </Nomes>
                     </Topo>
-                    
+
                     <Meio>
                         <p><Azul>E</Azul>mail: </p>
                         <p><Azul>G</Azul>ênero: </p>
