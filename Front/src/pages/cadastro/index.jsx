@@ -1,6 +1,7 @@
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
-import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto, LoginEsquerda, Seja, Azul} from './cadastro'
+import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, 
+        Texto, LoginEsquerda, Seja, Azul, Genero} from './cadastro'
 import { useState } from 'react';
 import { Botao } from '../../components/botao/styles'
 
@@ -93,6 +94,13 @@ function Cadastro() {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
+            <label htmlFor="sexo">Gênero</label>
+            <Genero>
+              <option>Masculino</option>
+              <option>Feminino</option>
+              <option>Outro</option>
+            </Genero>
+
               <br />
               <Botao type="submit">
                   Enviar
