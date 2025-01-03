@@ -15,7 +15,7 @@ sempre espera que todos os elementos estejam dentro de um único container pai. 
 utilizado uma div ,entretanto optei pelo Fragment, pois esse elemento pai não terá papel estético
 */
 function Home(){
-
+  
     const navigate = useNavigate(); // Inicializa o hook useNavigate
 
     // Função para redirecionar para a rota "/login"

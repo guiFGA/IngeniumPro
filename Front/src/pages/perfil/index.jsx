@@ -6,7 +6,7 @@ import {
 import energia from '../../assets/imagens/Energia.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import api from '../../services/api';
 
 
@@ -18,18 +18,28 @@ function Perfil() {
 
     function enviar() {
 
-        const token = sessionStorage.getItem("authToken")
+        const tokenStr = sessionStorage.getItem("authToken")
+        const token = JSON.parse(tokenStr)
+       
+        if (!token) {
+            console.log('Token não encontrado!');
+            return;
+        }
 
         api
             .get('/usuario', {
                 headers: {
-                    Authorization: `Bearer ${token}`
+
+                    Authorization: `Bearer ${token}`,
+
+
                 }
+
             })
             .then(({ data }) => {
-    
+
                 alert(data);
-    
+
             })
             .catch(err => {
                 console.log(err);
@@ -40,7 +50,7 @@ function Perfil() {
         enviar(); // Chamada quando o componente é montado
     }, []); // O array vazio [] garante que só será chamado uma vez
 
-    
+
 
     return (
         <div>

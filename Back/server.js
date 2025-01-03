@@ -52,6 +52,8 @@ const Cadastros = sequelize.define('cadastro', {
     resetTokenExpiry: {
         type: Sequelize.STRING
     }
+
+
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
@@ -249,46 +251,50 @@ app.post('/novasenha', async (req, res) => {
 
 }
 )
-//--------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
+// Rota protegida para buscar usuário
+app.get('/usuario', async (req, res) => {
 
-// Middleware para verificar o token
-function verificarToken(req, res, next) {
-    const SECRET_KEY = 'supersecretkey'
+    const SECRET_KEY = 'supersecretkey';
 
-    const token = req.headers['authorization'];
+    // Verifica se o cabeçalho Authorization foi enviado
+    const authHeader = req.headers['authorization'];
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).send('Acesso negado! Cabeçalho ausente ou malformado.');
+    }
 
-    if (!token) return res.status(401).send('Acesso negado!');
+    // Extrai o token após 'Bearer'
+    const token = authHeader.split(' ')[1];
+    console.log(token)
 
-    const tokenFinal = token.split(' ')[1]; // Pega o token após 'Bearer'
-
-    if (!tokenFinal) return res.status(401).send('Token malformado!');
-
-
+    // Verifica se o token é válido
+    if (!token) {
+        return res.status(401).send('Token malformado!');
+    }
     
-
-    
-}
-
-// Rota protegida para buscar o usuário logado
-app.get('/usuario', verificarToken, async (req, res) => {
     try {
-        const decoded = jwt.verify(token, SECRET_KEY); // Decodifica o token
-        req.userId = decoded.id; // Extrai o ID do usuário
-        next();
-        const user = await Cadastros.findOne({ where: { id: req.userId } });
+        // Decodifica o token
+        const decoded = jwt.verify(token, SECRET_KEY);
+        console.log(decoded);
+        // Busca o usuário pelo ID extraído do token
+        const user = await Cadastros.findOne({ where: { id: decoded.id } });
 
         if (user) {
-            res.json(user);
+            res.json(user); // Retorna os dados do usuário
         } else {
             res.status(404).json({ mensagem: 'Usuário não encontrado' });
         }
     } catch (err) {
-        res.status(401).send('Token inválido!');
+        // Tratamento específico para erros comuns
+        if (err.name === 'TokenExpiredError') {
+            res.status(401).send('Token expirado!');
+        } else {
+            res.status(401).send('Token inválido!' + err.message);
+        }
     }
-
-    
 });
+
 
 // Inicialização do servidor
 app.listen(3000, () => {
