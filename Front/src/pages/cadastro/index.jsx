@@ -25,6 +25,7 @@ function Cadastro() {
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,6 +100,7 @@ function Cadastro() {
               <option>Masculino</option>
               <option>Feminino</option>
               <option>Outro</option>
+             
             </Genero>
 
               <br />

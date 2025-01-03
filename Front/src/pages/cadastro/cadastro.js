@@ -108,4 +108,5 @@ export const Azul = styled.span`
 
 export const Genero = styled.select`
     border-radius: 1rem;
+    padding: 0.25rem;
 `

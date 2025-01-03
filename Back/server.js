@@ -9,6 +9,7 @@ import { type } from 'os';
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import { URL } from 'url';
+import { DataTypes } from 'sequelize';
 
 const SECRET_KEY = 'supersecretkey'
 const app = express();
@@ -47,12 +48,22 @@ const Cadastros = sequelize.define('cadastro', {
         allowNull: false,
     },
 
+    genero: {
+        type: Sequelize.STRING
+    },
+
+    foto: {
+        type: DataTypes.BLOB('long')
+    },
+
     resetToken: {
         type: Sequelize.STRING
     },
     resetTokenExpiry: {
         type: Sequelize.STRING
     }
+
+    
 
 
 });
@@ -83,7 +94,7 @@ app.get('/cadastro', async (req, res) => {
 
 // Rota POST para cadastrar um usuário
 app.post('/enviar', async (req, res) => {
-    const { email, senha, nome } = req.body;
+    const { email, senha, nome, genero } = req.body;
 
     try {
         // Verificar se o email já existe no banco
@@ -100,6 +111,7 @@ app.post('/enviar', async (req, res) => {
             email: email,
             senha: hashedSenha,
             usuario: nome,
+           
         });
 
         res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
@@ -258,8 +270,8 @@ app.post('/novasenha', async (req, res) => {
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers;
   
-    console.log(authHeader.authorization)
-    console.log("--------------------------------")
+   
+  
     if (!authHeader) {
       return res.status(403).send('Token não fornecido');
     }
@@ -273,7 +285,7 @@ const verifyToken = (req, res, next) => {
 
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
     console.log(decoded.id);
-    console.log("--------------------------------")
+   
       if (err) {
         console.error('Erro na verificação:', err); // Log do erro
         return res.status(401).send('Token inválido');
@@ -283,9 +295,15 @@ const verifyToken = (req, res, next) => {
     });
   };
   
-  app.get('/usuario', verifyToken, (req, res) => {
-    res.send(`Perfil do usuário com ID: ${req.userId}`);
+  app.get('/usuario', verifyToken, async (req, res) => {
+
+    const user = await Cadastros.findOne({where:{id: req.userId}}) 
+    res.send(user)
+
   });
+
+//------------------------------------------------------------
+
 
 // Inicialização do servidor
 app.listen(3000, () => {

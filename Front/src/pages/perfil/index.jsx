@@ -6,7 +6,7 @@ import {
 import energia from '../../assets/imagens/Energia.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 
@@ -16,21 +16,33 @@ import api from '../../services/api';
 
 function Perfil() {
 
+    const [nomeUsuario, setNomeUsuario] = useState(''); // Estado para armazenar o nome do usuário
+    const [emailUsuario, setEmailUsuario] = useState(''); // Estado para armazenar o nome do usuário
+    
+
+
     function enviar() {
 
         const token = sessionStorage.getItem("authToken")
-       const decodede =  JSON.parse(token);
+        const decodede = JSON.parse(token);
 
-    console.log(decodede.data)
-        console.log(token)
 
         api
-            .get('/usuario',{
+            .get('/usuario', {
                 headers: {
-                'Authorization': decodede.data
-              }
+                    'Authorization': decodede.data
+                }
             }
-    )
+            )
+            //capiturando os dados do usuario que vem do backend
+            .then((user) => {
+                const usuario = user
+                console.log(usuario.data.usuario)
+                setNomeUsuario(usuario.data.usuario)
+                setEmailUsuario(usuario.data.email)
+
+            })
+
     }
     useEffect(() => {
         enviar(); // Chamada quando o componente é montado
@@ -38,6 +50,7 @@ function Perfil() {
     }, []); // O array vazio [] garante que só será chamado uma vez
 
 
+      
 
     return (
         <div>
@@ -63,15 +76,15 @@ function Perfil() {
                 <CaixaEsquerda>
                     <Topo>
                         <Img>
-
+                         
                         </Img>
                         <Nomes>
-                            <p>Nome de perfil</p>
+                            <p>{nomeUsuario || 'Carregando...'}</p>
                         </Nomes>
                     </Topo>
 
                     <Meio>
-                        <p><Azul>E</Azul>mail: </p>
+                        <p><Azul>E</Azul>mail: {emailUsuario || 'Carregando...'}</p>
                         <p><Azul>G</Azul>ênero: </p>
                         <p><Azul>V</Azul>ersão: Beta <Azul>1.0v</Azul></p>
                     </Meio>
