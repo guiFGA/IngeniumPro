@@ -95,20 +95,11 @@ function Cadastro() {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-            <label htmlFor="sexo">Gênero</label>
-            <Genero>
-              <option>Masculino</option>
-              <option>Feminino</option>
-              <option>Outro</option>
-             
-            </Genero>
-
               <br />
               <Botao type="submit">
                   Enviar
               </Botao>
-
-
+              
           </Form>
         </Direita>
       </Corpo>
