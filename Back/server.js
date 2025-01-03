@@ -8,8 +8,9 @@ import bodyParser from 'body-parser';
 import { type } from 'os';
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
+import { URL } from 'url';
 
-
+const SECRET_KEY = 'supersecretkey'
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -131,7 +132,7 @@ app.post('/login', async (req, res) => {
 
 
     //criando o token 
-    const SECRET_KEY = 'supersecretkey'
+    
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
 
@@ -218,7 +219,7 @@ app.post('/novasenha', async (req, res) => {
     const { senha, token } = req.body
     console.log("token recebido:", token) //debug
 
-    const SECRET_KEY = 'supersecretkey'
+    
 
     try {
         const decoded = jwt.verify(token, SECRET_KEY);
@@ -254,47 +255,37 @@ app.post('/novasenha', async (req, res) => {
 //---------------------------------------------------------------------------
 
 // Rota protegida para buscar usuário
-app.get('/usuario', async (req, res) => {
-
-    const SECRET_KEY = 'supersecretkey';
-
-    // Verifica se o cabeçalho Authorization foi enviado
-    const authHeader = req.headers['authorization'];
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).send('Acesso negado! Cabeçalho ausente ou malformado.');
+const verifyToken = (req, res, next) => {
+    const authHeader = req.headers;
+  
+    console.log(authHeader.authorization)
+    console.log("--------------------------------")
+    if (!authHeader) {
+      return res.status(403).send('Token não fornecido');
     }
-
-    // Extrai o token após 'Bearer'
-    const token = authHeader.split(' ')[1];
-    console.log(token)
-
-    // Verifica se o token é válido
-    if (!token) {
-        return res.status(401).send('Token malformado!');
-    }
+  
+    const token = authHeader.authorization; // Extrai o token após "Bearer"
     
-    try {
-        // Decodifica o token
-        const decoded = jwt.verify(token, SECRET_KEY);
-        console.log(decoded);
-        // Busca o usuário pelo ID extraído do token
-        const user = await Cadastros.findOne({ where: { id: decoded.id } });
+    console.log('Token recebido:', token); // Debug
+    
+     
+ 
 
-        if (user) {
-            res.json(user); // Retorna os dados do usuário
-        } else {
-            res.status(404).json({ mensagem: 'Usuário não encontrado' });
-        }
-    } catch (err) {
-        // Tratamento específico para erros comuns
-        if (err.name === 'TokenExpiredError') {
-            res.status(401).send('Token expirado!');
-        } else {
-            res.status(401).send('Token inválido!' + err.message);
-        }
-    }
-});
-
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    console.log(decoded.id);
+    console.log("--------------------------------")
+      if (err) {
+        console.error('Erro na verificação:', err); // Log do erro
+        return res.status(401).send('Token inválido');
+      }
+      req.userId = decoded.id;
+      next();
+    });
+  };
+  
+  app.get('/usuario', verifyToken, (req, res) => {
+    res.send(`Perfil do usuário com ID: ${req.userId}`);
+  });
 
 // Inicialização do servidor
 app.listen(3000, () => {

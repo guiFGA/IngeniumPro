@@ -18,36 +18,23 @@ function Perfil() {
 
     function enviar() {
 
-        const tokenStr = sessionStorage.getItem("authToken")
-        const token = JSON.parse(tokenStr)
-       
-        if (!token) {
-            console.log('Token não encontrado!');
-            return;
-        }
+        const token = sessionStorage.getItem("authToken")
+       const decodede =  JSON.parse(token);
+
+    console.log(decodede.data)
+        console.log(token)
 
         api
-            .get('/usuario', {
+            .get('/usuario',{
                 headers: {
-
-                    Authorization: `Bearer ${token}`,
-
-
-                }
-
-            })
-            .then(({ data }) => {
-
-                alert(data);
-
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                'Authorization': decodede.data
+              }
+            }
+    )
     }
-
     useEffect(() => {
         enviar(); // Chamada quando o componente é montado
+
     }, []); // O array vazio [] garante que só será chamado uma vez
 
 
