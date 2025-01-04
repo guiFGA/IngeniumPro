@@ -14,10 +14,12 @@ import api from '../../services/api';
 
 
 
+
 function Perfil() {
 
     const [nomeUsuario, setNomeUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [emailUsuario, setEmailUsuario] = useState(''); // Estado para armazenar o nome do usuário
+    const [desdeUsuario, setDesdeUsuario] = useState('')
     
 
 
@@ -40,6 +42,8 @@ function Perfil() {
                 console.log(usuario.data.usuario)
                 setNomeUsuario(usuario.data.usuario)
                 setEmailUsuario(usuario.data.email)
+                setDesdeUsuario(new Date(usuario.data.createdAt).toLocaleDateString('pt-BR'))
+              
 
             })
 
@@ -85,7 +89,7 @@ function Perfil() {
 
                     <Meio>
                         <p><Azul>E</Azul>mail: {emailUsuario || 'Carregando...'}</p>
-                        <p><Azul>D</Azul>esde: </p>
+                        <p><Azul>D</Azul>esde: {desdeUsuario || 'Carregando...'} </p>
                         <p><Azul>V</Azul>ersão: Beta <Azul>1.0v</Azul></p>
                     </Meio>
 
