@@ -10,13 +10,14 @@ import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import { URL } from 'url';
 import { DataTypes } from 'sequelize';
+import multer from 'multer';
 
 const SECRET_KEY = 'supersecretkey'
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Para processar JSON
-
+app.use('/uploads', express.static('uploads'));
 
 //----------------------------------------------------------------------------------
 
@@ -53,7 +54,7 @@ const Cadastros = sequelize.define('cadastro', {
     },
 
     foto: {
-        type: DataTypes.BLOB('long')
+        type: Sequelize.STRING
     },
 
     resetToken: {
@@ -303,8 +304,36 @@ const verifyToken = (req, res, next) => {
   });
 
 //------------------------------------------------------------
+// Configurar o armazenamento das imagens
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Pasta onde as imagens serão armazenadas
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); // Nome único para o arquivo
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
+  // Rota para upload de imagem
+  app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res) => {
+    if (req.file) {
+      res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
+      const imageUrl = 'http:localhost:3000/uploads/' + req.file.filename
+      const user = await Cadastros.findOne({where:{id: req.userId}}) 
+      await user.update({
+        foto: imageUrl
+    });
 
 
+    } else {
+      res.status(400).json({ error: 'Erro ao fazer upload.' });
+    }
+  });
+
+
+//------------------------------------------------------------------
 // Inicialização do servidor
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');
