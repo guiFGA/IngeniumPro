@@ -1,17 +1,13 @@
 import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
-    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul
+    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, SalvarImg
 } from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
-
-
-
-
 
 
 
@@ -117,7 +113,7 @@ function Perfil() {
                                             <img
                                                 src={preview}
                                                 alt="Preview"
-                                                style={{ width: '100px', height: '100px' }}
+                                                style={{ width: '100px', height: '100px' , cursor: 'pointer'}}
                                             />
                                        
                                     </label>
@@ -129,7 +125,7 @@ function Perfil() {
                                         style={{display: 'none'}}
                                     />
                                 </div>
-                                <button type="submit" style={{ marginTop: '10px'}}>Salvar Foto</button>
+                                <SalvarImg type="submit" style={{ marginTop: '10px'}}>Salvar Foto</SalvarImg>
                             </form>
                         </Img>
                         <Nomes>
