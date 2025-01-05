@@ -20,13 +20,42 @@ function Perfil() {
     const [nomeUsuario, setNomeUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [emailUsuario, setEmailUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [desdeUsuario, setDesdeUsuario] = useState('')
-    
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
+    // Lidar com a pré-visualização da imagem
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setPreview(URL.createObjectURL(file)); // Pré-visualizar a imagem
+    }
 
+    // Enviar a imagem para o servidor
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('profileImage', image);
+        const token = sessionStorage.getItem("authToken")
+        const decodede = JSON.parse(token);
+
+        try {
+            await api.post('http://localhost:3000/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': decodede.data
+                },
+            });
+            alert('Upload feito com sucesso!');
+            console.log('Imagem salva');
+        } catch (error) {
+            console.error('Erro ao fazer upload:', error);
+        }
+    };
 
     function enviar() {
 
         const token = sessionStorage.getItem("authToken")
         const decodede = JSON.parse(token);
+
 
 
         api
@@ -39,12 +68,11 @@ function Perfil() {
             //capiturando os dados do usuario que vem do backend
             .then((user) => {
                 const usuario = user
-                console.log(usuario.data.usuario)
                 setNomeUsuario(usuario.data.usuario)
                 setEmailUsuario(usuario.data.email)
                 setDesdeUsuario(new Date(usuario.data.createdAt).toLocaleDateString('pt-BR'))
-              
-
+                setPreview(usuario.data.foto); // Mostra a nova imagem após o upload
+                
             })
 
     }
@@ -54,7 +82,8 @@ function Perfil() {
     }, []); // O array vazio [] garante que só será chamado uma vez
 
 
-      
+
+
 
     return (
         <div>
@@ -80,7 +109,28 @@ function Perfil() {
                 <CaixaEsquerda>
                     <Topo>
                         <Img>
-                         
+                            
+                            <form onSubmit={handleSubmit}>
+                                <div>
+                                    <label htmlFor="imageUpload">
+                                       
+                                            <img
+                                                src={preview}
+                                                alt="Preview"
+                                                style={{ width: '100px', height: '100px' }}
+                                            />
+                                       
+                                    </label>
+                                    <input
+                                        id="imageUpload"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        style={{display: 'none'}}
+                                    />
+                                </div>
+                                <button type="submit" style={{ marginTop: '10px'}}>Salvar Foto</button>
+                            </form>
                         </Img>
                         <Nomes>
                             <p>{nomeUsuario || 'Carregando...'}</p>

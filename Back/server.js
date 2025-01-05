@@ -49,10 +49,6 @@ const Cadastros = sequelize.define('cadastro', {
         allowNull: false,
     },
 
-    genero: {
-        type: Sequelize.STRING
-    },
-
     foto: {
         type: Sequelize.STRING
     },
@@ -70,7 +66,7 @@ const Cadastros = sequelize.define('cadastro', {
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-//Cadastros.sync({ force: true });
+Cadastros.sync({ force: true });
 
 // Resolver diretório raiz
 const __dirname = path.resolve();
@@ -112,6 +108,7 @@ app.post('/enviar', async (req, res) => {
             email: email,
             senha: hashedSenha,
             usuario: nome,
+            foto: 'http://localhost:3000/uploads/123456781.png'
            
         });
 
@@ -320,7 +317,7 @@ const storage = multer.diskStorage({
   app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res) => {
     if (req.file) {
       res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
-      const imageUrl = 'http:localhost:3000/uploads/' + req.file.filename
+      const imageUrl = 'http://localhost:3000/uploads/' + req.file.filename
       const user = await Cadastros.findOne({where:{id: req.userId}}) 
       await user.update({
         foto: imageUrl
