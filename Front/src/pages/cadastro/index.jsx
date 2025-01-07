@@ -63,7 +63,7 @@ function Cadastro() {
         <Direita>
           <Form onSubmit={handleSubmit}>
             <h1>Crie sua conta</h1>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">E-mail</label>
             <Inputs
               name="email"
               id="email"
