@@ -37,6 +37,14 @@ export const NavLinks = styled.a`
         transform: scaleX(1); 
     }
 `;
+
+export const Input = styled.input`
+    padding: 0.5rem;
+    background-color: white;
+    border: none;
+    border-radius: 1rem;
+    width: 12vw;
+`;
 //------------------------Corpo----------------------------
 export const Main = styled.main`
     display: flex; /* Define o layout como flexbox */
@@ -164,6 +172,54 @@ export const SalvarImg = styled.button`
         transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
     }
 `
-/*--------------------Elementos Caixa Direita Cima-------------------------------*/
 
 
+export const Botao = styled.button`
+    background-color: rgba(2, 188, 255, 0);
+    color: white;
+    width: 5vw;
+    height: 3vh;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))1;
+    transition: all 0.3s ease; /* Transição suave para o hover */
+
+    &:hover {
+        background-color: rgba(42, 131, 163, 0.2); /* Cor de fundo ao passar o mouse */
+        border-color: rgba(2, 188, 255, 1); /* Alterar a cor da borda */
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+    }
+
+`;
+
+export const Botao2 = styled.button`
+    background-color: rgba(2, 188, 255, 0);
+    color: white;
+    width: 5vw;
+    height: 3vh;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))1;
+    transition: all 0.3s ease; /* Transição suave para o hover */
+
+    &:hover {
+        background-color: rgba(42, 131, 163, 0.2); /* Cor de fundo ao passar o mouse */
+        border-color: rgba(2, 188, 255, 1); /* Alterar a cor da borda */
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+    }
+
+`;
+
+export const FormPesquisa = styled.form`
+    display: flex;
+    align-items: center;
+    gap: 15px;
+`

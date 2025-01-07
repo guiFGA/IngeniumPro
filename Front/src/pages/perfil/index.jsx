@@ -1,7 +1,8 @@
 import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
-    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, SalvarImg
+    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, SalvarImg, Input,
+    Botao, Botao2, FormPesquisa
 } from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
@@ -116,8 +117,9 @@ function Perfil() {
                     </div>
                     <div className="links">
                         <NavBar>
-                            <form onSubmit={handlesubmit}>
-                                <input
+                            
+                            <FormPesquisa onSubmit={handlesubmit}>
+                                <Input
                                     type="text"
                                     placeholder='digite um usuario'
                                     value={pesquisar}
@@ -125,8 +127,8 @@ function Perfil() {
                                 />
 
 
-                                <button type='submit'>pesquisar</button>
-                            </form>
+                                <Botao2 type='submit'>pesquisar</Botao2>
+                            </FormPesquisa>
                             <li><NavLinks href="http://localhost:5173/">Home</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/">Sobre</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/login">Entre</NavLinks></li>
@@ -165,7 +167,8 @@ function Perfil() {
                                         style={{ display: 'none' }}
                                     />
                                 </div>
-                                <button type="submit" style={{ marginTop: '10px' }}>Salvar Foto</button>
+                               
+                               <Botao type="submit" style={{ marginTop: '10px' }}>Salvar Foto</Botao>
                             </form>
                         </Img>
                         <Nomes>
