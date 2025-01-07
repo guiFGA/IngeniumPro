@@ -98,17 +98,18 @@ export const Azul = styled.span`
 export const Topo = styled.div`
     display: flex;
     width: 100%;
-    height: 10%;
+    height: 14.5%;
     gap: 30px;
+    margin-bottom: 20px;
 `
 export const Img = styled.div`
-    width: 5vw;
-    height: 8vh;
+    width: 106px;
+    height: 102px;
     display: flex;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     border-radius: 3rem;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))1; 
-   
+
 `
 
 export const Nomes = styled.div`
@@ -117,6 +118,8 @@ export const Nomes = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 20px;
+
 `
 
 export const Meio = styled.div`
@@ -141,6 +144,26 @@ export const Engenharia = styled.div`
     margin-left: 20px;
 `
 
+export const SalvarImg = styled.button`
+    background-color: rgba(2, 188, 255, 0);
+    color: white;
+    width: 5vw;
+    height: 3vh;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))1;
+    transition: all 0.3s ease; /* Transição suave para o hover */
+
+    &:hover {
+        background-color: rgba(42, 131, 163, 0.2); /* Cor de fundo ao passar o mouse */
+        border-color: rgba(2, 188, 255, 1); /* Alterar a cor da borda */
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+    }
+`
 /*--------------------Elementos Caixa Direita Cima-------------------------------*/
 
 
