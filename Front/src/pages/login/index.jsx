@@ -53,7 +53,7 @@ const handleSubmit = (e) => {
                     <Form onSubmit={handleSubmit}>
                         <h1>Entrar</h1>
                         <p id="texto_login">Faça login no Ingenium<Azul>Pro</Azul> usando seu e-mail ou o nome de usuário com o qual você se registrou.</p>
-                        <label htmlFor="email">email</label>
+                        <label htmlFor="email">E-mail</label>
                         <Inputs
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +63,7 @@ const handleSubmit = (e) => {
                             name='email' 
                         />
 
-                        <label htmlFor="password">senha</label>
+                        <label htmlFor="password">Senha</label>
                         <Inputs
                             type="password"
                             onChange={(e) => setSenha(e.target.value)}
