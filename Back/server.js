@@ -66,7 +66,7 @@ const Cadastros = sequelize.define('cadastro', {
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-Cadastros.sync({ force: true });
+//Cadastros.sync({ force: true });
 
 // Resolver diretório raiz
 const __dirname = path.resolve();
@@ -91,7 +91,7 @@ app.get('/cadastro', async (req, res) => {
 
 // Rota POST para cadastrar um usuário
 app.post('/enviar', async (req, res) => {
-    const { email, senha, nome, genero } = req.body;
+    const { email, senha, nome } = req.body;
 
     try {
         // Verificar se o email já existe no banco
@@ -108,7 +108,7 @@ app.post('/enviar', async (req, res) => {
             email: email,
             senha: hashedSenha,
             usuario: nome,
-            foto: 'http://localhost:3000/uploads/123456781.png'
+            foto: 'http://localhost:3000/uploads/default.png'
            
         });
 
@@ -328,7 +328,29 @@ const storage = multer.diskStorage({
       res.status(400).json({ error: 'Erro ao fazer upload.' });
     }
   });
+//----------------------------------------------------------------------------------
+//rota para pegar pesquisar outros usuarios
+app.post('/pesquisar', async(req, res)=>{
+    const {pesquisar} = req.body
+    const user = await Cadastros.findOne({where: {usuario: pesquisar }})
+    
+    
+   
+    res.send(user)
+})
 
+//rota para carregar o perfil de outro usuario
+
+app.post('/mostrarUser',async (req, res) => {
+
+    const usuario = req.body
+    console.log(usuario.usuario)
+    const user = await Cadastros.findOne({where:{usuario: usuario.usuario}}) 
+    
+    
+    res.send(user)
+
+  });
 
 //------------------------------------------------------------------
 // Inicialização do servidor
