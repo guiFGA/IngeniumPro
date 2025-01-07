@@ -88,14 +88,19 @@ function Perfil() {
     function procurar(pesquisar) {
         api
             .post('/pesquisar', { pesquisar })
-            
+
 
             .then((user) => {
-               console.log(user.data.usuario)
-               window.location.href = 'http://localhost:5173/outroPerfil/' + user.data.usuario
-                
+                if (user.data.usuario==undefined) {
+                    return alert('usuario nao encontrado')
+                }
+                else {
+                    console.log(user.data.usuario)
+                    window.location.href = 'http://localhost:5173/outroPerfil/' + user.data.usuario
+                }
+
             })
-            
+
     }
 
 
@@ -111,46 +116,46 @@ function Perfil() {
                     </div>
                     <div className="links">
                         <NavBar>
-                        <form onSubmit={handlesubmit}>
-                            <input
-                                type="text"
-                                placeholder='digite um usuario'
-                                value={pesquisar}
-                                onChange={(e) => setPesquisar(e.target.value)}
-                            />
+                            <form onSubmit={handlesubmit}>
+                                <input
+                                    type="text"
+                                    placeholder='digite um usuario'
+                                    value={pesquisar}
+                                    onChange={(e) => setPesquisar(e.target.value)}
+                                />
 
 
-                            <button type='submit'>pesquisar</button>
-                        </form>
+                                <button type='submit'>pesquisar</button>
+                            </form>
                             <li><NavLinks href="http://localhost:5173/">Home</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/">Sobre</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/login">Entre</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/">Perfil</NavLinks></li>
-                            
+
                         </NavBar>
                     </div>
                 </Nav>
-                
+
             </header>
 
             <Main>
-                
+
                 <CaixaEsquerda>
-                    
+
                     <Topo>
-                        
+
                         <Img>
 
                             <form onSubmit={handleSubmit}>
                                 <div>
                                     <label htmlFor="imageUpload">
-                                       
-                                            <img
-                                                src={preview}
-                                                alt="Preview"
-                                                style={{ width: '100px', height: '100px' , cursor: 'pointer'}}
-                                            />
-                                       
+
+                                        <img
+                                            src={preview}
+                                            alt="Preview"
+                                            style={{ width: '100px', height: '100px', cursor: 'pointer' }}
+                                        />
+
                                     </label>
                                     <input
                                         id="imageUpload"
@@ -186,7 +191,7 @@ function Perfil() {
                 <Caixas>
                     <CaixaDirCima>
                         <h2>Progresso</h2>
-                       
+
                     </CaixaDirCima>
 
                     <CaixaDirBaixo>

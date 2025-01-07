@@ -343,13 +343,19 @@ app.post('/pesquisar', async(req, res)=>{
 
 app.post('/mostrarUser',async (req, res) => {
 
+    
     const usuario = req.body
     console.log(usuario.usuario)
     const user = await Cadastros.findOne({where:{usuario: usuario.usuario}}) 
-    
-    
-    res.send(user)
 
+    if(!user){
+        return res.send('usuario nao encontrada')
+    }
+
+    
+    return res.send(user)
+
+ 
   });
 
 //------------------------------------------------------------------
