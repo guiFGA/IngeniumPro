@@ -2,12 +2,12 @@ import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
     Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul
-} from './perfil';
+} from './outroPerfil';
 import energia from '../../assets/imagens/Energia.svg'
-import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -15,57 +15,23 @@ import api from '../../services/api';
 
 
 
-function Perfil() {
+function OutroPerfil() {
 
     const [nomeUsuario, setNomeUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [emailUsuario, setEmailUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [desdeUsuario, setDesdeUsuario] = useState('')
-    const [image, setImage] = useState('');
-    const [preview, setPreview] = useState('');
-    const [pesquisar, setPesquisar] = useState('')
+    const [preview, setPreview] = useState('')
+    const {usuario} = useParams()
+    
 
-    // Lidar com a pré-visualização da imagem
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-        setPreview(URL.createObjectURL(file)); // Pré-visualizar a imagem
-    }
-
-    // Enviar a imagem para o servidor
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('profileImage', image);
-        const token = sessionStorage.getItem("authToken")
-        const decodede = JSON.parse(token);
-
-        try {
-            await api.post('http://localhost:3000/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': decodede.data
-                },
-            });
-            alert('Upload feito com sucesso!');
-            console.log('Imagem salva');
-        } catch (error) {
-            console.error('Erro ao fazer upload:', error);
-        }
-    };
+    
 
     function enviar() {
 
-        const token = sessionStorage.getItem("authToken")
-        const decodede = JSON.parse(token);
 
-
-
+        
         api
-            .get('/usuario', {
-                headers: {
-                    'Authorization': decodede.data
-                }
-            }
+            .post('/mostrarUser', {usuario}
             )
             //capiturando os dados do usuario que vem do backend
             .then((user) => {
@@ -80,28 +46,12 @@ function Perfil() {
     }
 
     useEffect(() => {
+        
         enviar(); // Chamada quando o componente é montado
 
     }, []); // O array vazio [] garante que só será chamado uma vez
 
-
-    const handlesubmit = (e) => {
-        e.preventDefault();
-        procurar(pesquisar);
-    };
-    function procurar(pesquisar) {
-        api
-            .post('/pesquisar', { pesquisar })
-            
-
-            .then((user) => {
-               console.log(user.data.usuario)
-               window.location.href = 'http://localhost:5173/outroPerfil/' + user.data.usuario
-                
-            })
-            
-    }
-
+ 
 
 
     return (
@@ -115,39 +65,21 @@ function Perfil() {
                     </div>
                     <div className="links">
                         <NavBar>
-                        <form onSubmit={handlesubmit}>
-                            <input
-                                type="text"
-                                placeholder='digite um usuario'
-                                value={pesquisar}
-                                onChange={(e) => setPesquisar(e.target.value)}
-                            />
-
-
-                            <button type='submit'>pesquisar</button>
-                        </form>
                             <li><NavLinks href="http://localhost:5173/">Home</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/">Sobre</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/login">Entre</NavLinks></li>
-                            <li><NavLinks href="http://localhost:5173/">Perfil</NavLinks></li>
-                            
+                            <li><NavLinks href="http://localhost:5173/perfil">Perfil</NavLinks></li>
                         </NavBar>
                     </div>
                 </Nav>
-                
             </header>
 
             <Main>
-                
                 <CaixaEsquerda>
-                    
                     <Topo>
-                        
                         <Img>
 
-                            <form onSubmit={handleSubmit}>
-                                <div>
-                                    <label htmlFor="imageUpload">
+                          
 
                                         <img
                                             src={preview}
@@ -155,17 +87,8 @@ function Perfil() {
                                             style={{ width: '100px', height: '100px' }}
                                         />
 
-                                    </label>
-                                    <input
-                                        id="imageUpload"
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageChange}
-                                        style={{ display: 'none' }}
-                                    />
-                                </div>
-                                <button type="submit" style={{ marginTop: '10px' }}>Salvar Foto</button>
-                            </form>
+                                  
+                                  
                         </Img>
                         <Nomes>
                             <p>{nomeUsuario || 'Carregando...'}</p>
@@ -190,7 +113,10 @@ function Perfil() {
                 <Caixas>
                     <CaixaDirCima>
                         <h2>Progresso</h2>
-                       
+                        
+
+
+
                     </CaixaDirCima>
 
                     <CaixaDirBaixo>
@@ -203,4 +129,4 @@ function Perfil() {
     )
 }
 
-export default Perfil;
+export default OutroPerfil;

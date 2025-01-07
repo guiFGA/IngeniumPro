@@ -7,6 +7,7 @@ import NovaSenha from './pages/novaSenha';
 import PrivateRoute from './PrivateRoutes';
 import Escolher from './pages/escolherEngenharia';
 import Perfil from './pages/perfil';
+import OutroPerfil from './pages/outroPerfil';
 
 function App() {
   return (
@@ -32,6 +33,11 @@ function App() {
 
         {/*rota para página de perfil*/}
         <Route path="/perfil" element={<PrivateRoute><Perfil/></PrivateRoute>} />
+
+        {/*rota para exibir perfil*/}
+        <Route path="/outroPerfil/:usuario" element={<OutroPerfil />} />
+
+     
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />

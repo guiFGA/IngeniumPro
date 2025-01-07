@@ -1,7 +1,7 @@
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
 import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, 
-        Texto, LoginEsquerda, Seja, Azul, Genero} from './cadastro'
+        Texto, LoginEsquerda, Seja, Azul} from './cadastro'
 import { useState } from 'react';
 import { Botao } from '../../components/botao/styles'
 

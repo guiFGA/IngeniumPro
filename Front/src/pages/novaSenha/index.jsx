@@ -7,7 +7,7 @@ import { Container, Header, Fundo1, FundoExtra, Fundo2, Form, Inputs, Azul } fro
 
 
 
-function mudarSenha(senha, token, setMessage){
+function mudarSenha(senha, token){
     api.
     post('/novasenha', {senha, token})
     .then(({ data }) => {
