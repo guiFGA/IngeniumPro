@@ -68,6 +68,34 @@ const Cadastros = sequelize.define('cadastro', {
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
 //Cadastros.sync({ force: true });
 
+const Module = sequelize.define('Module', {
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+});
+
+Module.hasOne(Module, { foreignKey: 'nextModuleId', as: 'nextModule' }); // Relaciona o próximo módulo
+
+//Module.sync({ force: true });
+
+const Progress = sequelize.define('Progress', {
+    completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+});
+
+Progress.belongsTo(Cadastros);  // Associa Progress ao cadastros (muitos para 1)
+Progress.belongsTo(Module);  // Associa Progress ao Module (muitos para 1)
+
+//Progress.sync({ force: true });
+//------------------------------------------------------------------------------------------------------
+
 // Resolver diretório raiz
 const __dirname = path.resolve();
 
@@ -357,6 +385,8 @@ app.post('/mostrarUser',async (req, res) => {
 
  
   });
+//---------------------------------------------------------------------
+
 
 //------------------------------------------------------------------
 // Inicialização do servidor
