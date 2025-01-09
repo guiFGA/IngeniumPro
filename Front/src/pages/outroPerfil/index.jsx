@@ -33,7 +33,7 @@ function OutroPerfil() {
         api
             .post('/mostrarUser', {usuario}
             )
-            //capiturando os dados do usuario que vem do backend
+            //capturando os dados do usuario que vem do backend
             .then((user) => {
                 const usuario = user
                 setNomeUsuario(usuario.data.usuario)
