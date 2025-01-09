@@ -11,6 +11,17 @@ function Modulos() {
     const { id } = useParams()
     const [titulo, SetTitulo] = useState('')
     const [conteudo, SetConteudo] = useState('')
+    const [clicked, setClicked] = useState(false);
+
+    //mudar o estado do botao
+    const handleClick = () => {
+        if(clicked==false){
+        setClicked(true);
+        }
+
+        else
+        setClicked(false)
+      };
 
     //rota para identificar qual é o modulo
     function requisitar(id) {
@@ -48,7 +59,7 @@ function Modulos() {
         .post('/marcar', { id })
 
         .then((response) => {
-            alert(JSON.stringify(response.data))
+            alert(response.data)
         })
 
         .catch(err => {
@@ -77,7 +88,7 @@ function Modulos() {
             <p>{conteudo}</p>
 
             <form onSubmit={handleSubmit}>
-                <button type="submit">marcar como concluido</button>
+                <button type="submit" onClick={handleClick} >{clicked ? "Marcar como concluido" : "Desmarcar"}</button>
             </form>
         </div>
 
