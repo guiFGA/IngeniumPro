@@ -8,6 +8,8 @@ import PrivateRoute from './PrivateRoutes';
 import Escolher from './pages/escolherEngenharia';
 import Perfil from './pages/perfil';
 import OutroPerfil from './pages/outroPerfil';
+import Conteudo from './pages/conteudo';
+import Modulos from './pages/modulos';
 
 function App() {
   return (
@@ -36,6 +38,14 @@ function App() {
 
         {/*rota para exibir perfil*/}
         <Route path="/outroPerfil/:usuario" element={<OutroPerfil />} />
+
+        {/*rota para a arvore de conteudos*/}
+        <Route path="/conteudo" element={<PrivateRoute><Conteudo/></PrivateRoute>} />
+
+        {/*rota para os modulos*/}
+        <Route path="/conteudo/:id" element={<PrivateRoute><Modulos/></PrivateRoute>} />
+
+
 
      
 

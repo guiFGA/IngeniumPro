@@ -60,7 +60,7 @@ const Cadastros = sequelize.define('cadastro', {
         type: Sequelize.STRING
     }
 
-    
+
 
 
 });
@@ -137,7 +137,7 @@ app.post('/enviar', async (req, res) => {
             senha: hashedSenha,
             usuario: nome,
             foto: 'http://localhost:3000/uploads/default.png'
-           
+
         });
 
         res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
@@ -170,7 +170,7 @@ app.post('/login', async (req, res) => {
 
 
     //criando o token 
-    
+
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
 
@@ -257,7 +257,7 @@ app.post('/novasenha', async (req, res) => {
     const { senha, token } = req.body
     console.log("token recebido:", token) //debug
 
-    
+
 
     try {
         const decoded = jwt.verify(token, SECRET_KEY);
@@ -295,99 +295,132 @@ app.post('/novasenha', async (req, res) => {
 // Rota protegida para buscar usuário
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers;
-  
-   
-  
+
+
+
     if (!authHeader) {
-      return res.status(403).send('Token não fornecido');
+        return res.status(403).send('Token não fornecido');
     }
-  
+
     const token = authHeader.authorization; // Extrai o token após "Bearer"
-    
+
     console.log('Token recebido:', token); // Debug
-    
-     
- 
+
+
+
 
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    console.log(decoded.id);
-   
-      if (err) {
-        console.error('Erro na verificação:', err); // Log do erro
-        return res.status(401).send('Token inválido');
-      }
-      req.userId = decoded.id;
-      next();
-    });
-  };
-  
-  app.get('/usuario', verifyToken, async (req, res) => {
+        console.log(decoded.id);
 
-    const user = await Cadastros.findOne({where:{id: req.userId}}) 
+        if (err) {
+            console.error('Erro na verificação:', err); // Log do erro
+            return res.status(401).send('Token inválido');
+        }
+        req.userId = decoded.id;
+        next();
+    });
+};
+
+app.get('/usuario', verifyToken, async (req, res) => {
+
+    const user = await Cadastros.findOne({ where: { id: req.userId } })
     res.send(user)
 
-  });
+});
 
 //------------------------------------------------------------
 // Configurar o armazenamento das imagens
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Pasta onde as imagens serão armazenadas
+        cb(null, 'uploads/'); // Pasta onde as imagens serão armazenadas
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Nome único para o arquivo
+        cb(null, Date.now() + path.extname(file.originalname)); // Nome único para o arquivo
     },
-  });
+});
 
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
-  // Rota para upload de imagem
-  app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res) => {
+// Rota para upload de imagem
+app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res) => {
     if (req.file) {
-      res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
-      const imageUrl = 'http://localhost:3000/uploads/' + req.file.filename
-      const user = await Cadastros.findOne({where:{id: req.userId}}) 
-      await user.update({
-        foto: imageUrl
-    });
+        res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
+        const imageUrl = 'http://localhost:3000/uploads/' + req.file.filename
+        const user = await Cadastros.findOne({ where: { id: req.userId } })
+        await user.update({
+            foto: imageUrl
+        });
 
 
     } else {
-      res.status(400).json({ error: 'Erro ao fazer upload.' });
+        res.status(400).json({ error: 'Erro ao fazer upload.' });
     }
-  });
+});
 //----------------------------------------------------------------------------------
 //rota para pegar pesquisar outros usuarios
-app.post('/pesquisar', async(req, res)=>{
-    const {pesquisar} = req.body
-    const user = await Cadastros.findOne({where: {usuario: pesquisar }})
-    
-    
-   
+app.post('/pesquisar', async (req, res) => {
+    const { pesquisar } = req.body
+    const user = await Cadastros.findOne({ where: { usuario: pesquisar } })
+
+
+
     res.send(user)
 })
 
 //rota para carregar o perfil de outro usuario
 
-app.post('/mostrarUser',async (req, res) => {
+app.post('/mostrarUser', async (req, res) => {
 
-    
+
     const usuario = req.body
     console.log(usuario.usuario)
-    const user = await Cadastros.findOne({where:{usuario: usuario.usuario}}) 
+    const user = await Cadastros.findOne({ where: { usuario: usuario.usuario } })
 
-    if(!user){
+    if (!user) {
         return res.send('usuario nao encontrada')
     }
 
-    
+
     return res.send(user)
 
- 
-  });
+
+});
 //---------------------------------------------------------------------
+//rota para identificar o modulo
 
+app.post('/requisitar', async (req, res) => {
 
+    const id = req.body.id
+
+    const modulo = await Module.findOne({ where: { id: id } })
+    res.send(modulo)
+
+})
+
+//-------------------------------------------------------------------
+//rotapara marcar modulo como concluido
+
+app.post('/marcar', async (req, res) => {
+
+    const id = req.body.id
+
+    const progresso = await Progress.findOne({ where: { id: id } })
+    if (progresso.completed == 0) {
+        await progresso.update({
+            completed: true
+            
+        })
+        res.send("marcado como concluido")
+    }
+
+    else{
+        await progresso.update({
+            completed: false
+        })
+        res.send("marcado como nao concluido")
+        return
+    }
+})
 //------------------------------------------------------------------
 // Inicialização do servidor
 app.listen(3000, () => {
