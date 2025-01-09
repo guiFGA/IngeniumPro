@@ -15,7 +15,7 @@ sempre espera que todos os elementos estejam dentro de um único container pai. 
 utilizado uma div ,entretanto optei pelo Fragment, pois esse elemento pai não terá papel estético
 */
 function Home(){
-
+  
     const navigate = useNavigate(); // Inicializa o hook useNavigate
 
     // Função para redirecionar para a rota "/login"
@@ -36,7 +36,7 @@ function Home(){
                             <li><NavLinks href="http://localhost:5173/">Home</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/">Sobre</NavLinks></li>
                             <li><NavLinks href="http://localhost:5173/login">Entre</NavLinks></li>
-                            <li><NavLinks href="http://localhost:5173/">Perfil</NavLinks></li>
+                            <li><NavLinks href="http://localhost:5173/perfil">Perfil</NavLinks></li>
                         </NavBar>
                     </div>
                 </Nav>
@@ -59,8 +59,6 @@ function Home(){
 
         </>
     )
-
-
 }
 
 export default Home;

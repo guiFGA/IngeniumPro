@@ -1,6 +1,7 @@
 import api from '../../services/api'
 import logo from '../../assets/imagens/logo.svg'
-import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, Texto, LoginEsquerda, Seja, Azul} from './cadastro'
+import { Container, Header, LoginLink, Corpo, Esquerda, Form, Direita, Inputs, 
+        Texto, LoginEsquerda, Seja, Azul} from './cadastro'
 import { useState } from 'react';
 import { Botao } from '../../components/botao/styles'
 
@@ -24,6 +25,7 @@ function Cadastro() {
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +63,7 @@ function Cadastro() {
         <Direita>
           <Form onSubmit={handleSubmit}>
             <h1>Crie sua conta</h1>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">E-mail</label>
             <Inputs
               name="email"
               id="email"
@@ -97,8 +99,7 @@ function Cadastro() {
               <Botao type="submit">
                   Enviar
               </Botao>
-
-
+              
           </Form>
         </Direita>
       </Corpo>

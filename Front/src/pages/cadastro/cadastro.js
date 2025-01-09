@@ -70,7 +70,7 @@ export const Form = styled.form`
     border: 1px solid transparent;
     border-radius: 0.1em;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1)) 1;
-    gap: 15px;
+    gap: 12px;
     padding-top: 3rem;
     background-color: #040B10;
     color: #fff;
@@ -104,4 +104,9 @@ export const Seja = styled.div`
 
 export const Azul = styled.span`
     color: #00D0FF;
+`
+
+export const Genero = styled.select`
+    border-radius: 1rem;
+    padding: 0.25rem;
 `

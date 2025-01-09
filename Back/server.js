@@ -8,13 +8,16 @@ import bodyParser from 'body-parser';
 import { type } from 'os';
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
+import { URL } from 'url';
+import { DataTypes } from 'sequelize';
+import multer from 'multer';
 
-
+const SECRET_KEY = 'supersecretkey'
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Para processar JSON
-
+app.use('/uploads', express.static('uploads'));
 
 //----------------------------------------------------------------------------------
 
@@ -46,12 +49,20 @@ const Cadastros = sequelize.define('cadastro', {
         allowNull: false,
     },
 
+    foto: {
+        type: Sequelize.STRING
+    },
+
     resetToken: {
         type: Sequelize.STRING
     },
     resetTokenExpiry: {
         type: Sequelize.STRING
     }
+
+    
+
+
 });
 
 // Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
@@ -97,6 +108,8 @@ app.post('/enviar', async (req, res) => {
             email: email,
             senha: hashedSenha,
             usuario: nome,
+            foto: 'http://localhost:3000/uploads/default.png'
+           
         });
 
         res.status(201).send(`Usuário cadastrado com sucesso! ID: ${novoUsuario.id}`);
@@ -129,10 +142,10 @@ app.post('/login', async (req, res) => {
 
 
     //criando o token 
-    const SECRET_KEY = 'supersecretkey'
+    
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
 
-    
+
     console.log(token)
     res.send(token);
 
@@ -149,7 +162,7 @@ app.post('/login', async (req, res) => {
 //funçao pra envio do email
 const sendResetEmail = async (email, link) => {
     try {
-      
+
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
@@ -214,9 +227,9 @@ app.post('/redefinir', async (req, res) => {
 app.post('/novasenha', async (req, res) => {
 
     const { senha, token } = req.body
-    console.log("token recebido:", token ) //debug
+    console.log("token recebido:", token) //debug
 
-    const SECRET_KEY = 'supersecretkey'
+    
 
     try {
         const decoded = jwt.verify(token, SECRET_KEY);
@@ -235,22 +248,117 @@ app.post('/novasenha', async (req, res) => {
 
         res.json({ message: 'Senha redefinida com sucesso!' });
     }
-    catch(err) {
+    catch (err) {
         console.error(err);
         return res.json({ message: 'Token inválido ou expirado' });
     }
 
 
 
-        
+
 
 
 
 
 }
 )
+//---------------------------------------------------------------------------
+
+// Rota protegida para buscar usuário
+const verifyToken = (req, res, next) => {
+    const authHeader = req.headers;
+  
+   
+  
+    if (!authHeader) {
+      return res.status(403).send('Token não fornecido');
+    }
+  
+    const token = authHeader.authorization; // Extrai o token após "Bearer"
+    
+    console.log('Token recebido:', token); // Debug
+    
+     
+ 
+
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    console.log(decoded.id);
+   
+      if (err) {
+        console.error('Erro na verificação:', err); // Log do erro
+        return res.status(401).send('Token inválido');
+      }
+      req.userId = decoded.id;
+      next();
+    });
+  };
+  
+  app.get('/usuario', verifyToken, async (req, res) => {
+
+    const user = await Cadastros.findOne({where:{id: req.userId}}) 
+    res.send(user)
+
+  });
+
+//------------------------------------------------------------
+// Configurar o armazenamento das imagens
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Pasta onde as imagens serão armazenadas
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); // Nome único para o arquivo
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
+  // Rota para upload de imagem
+  app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res) => {
+    if (req.file) {
+      res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
+      const imageUrl = 'http://localhost:3000/uploads/' + req.file.filename
+      const user = await Cadastros.findOne({where:{id: req.userId}}) 
+      await user.update({
+        foto: imageUrl
+    });
 
 
+    } else {
+      res.status(400).json({ error: 'Erro ao fazer upload.' });
+    }
+  });
+//----------------------------------------------------------------------------------
+//rota para pegar pesquisar outros usuarios
+app.post('/pesquisar', async(req, res)=>{
+    const {pesquisar} = req.body
+    const user = await Cadastros.findOne({where: {usuario: pesquisar }})
+    
+    
+   
+    res.send(user)
+})
+
+//rota para carregar o perfil de outro usuario
+
+app.post('/mostrarUser',async (req, res) => {
+
+    
+    const usuario = req.body
+    console.log(usuario.usuario)
+    const user = await Cadastros.findOne({where:{usuario: usuario.usuario}}) 
+
+    if(!user){
+        return res.send('usuario nao encontrada')
+    }
+
+    
+    return res.send(user)
+
+ 
+  });
+
+//------------------------------------------------------------------
 // Inicialização do servidor
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');
