@@ -37,6 +37,7 @@ export const NavLinks = styled.a`
         transform: scaleX(1); 
     }
 `;
+
 //------------------------Corpo----------------------------
 
 export const Main = styled.main`
@@ -85,8 +86,6 @@ export const Botao = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-
-
 `;
 
 //------------------------Footer-------------------------

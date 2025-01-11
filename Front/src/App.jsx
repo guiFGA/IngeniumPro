@@ -8,6 +8,8 @@ import PrivateRoute from './PrivateRoutes';
 import Escolher from './pages/escolherEngenharia';
 import Perfil from './pages/perfil';
 import OutroPerfil from './pages/outroPerfil';
+import Sobre from './pages/sobre';
+import Equipe from './pages/equipe';
 
 function App() {
   return (
@@ -37,6 +39,11 @@ function App() {
         {/*rota para exibir perfil*/}
         <Route path="/outroPerfil/:usuario" element={<OutroPerfil />} />
 
+        {/*rota para página sobre nós*/}
+        <Route path="/sobre" element={<Sobre />} />
+
+        {/*rota para página equipe*/}
+        <Route path="/equipe" element={<Equipe />} />
      
 
         {/* Rota para páginas não encontradas */}
