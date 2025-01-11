@@ -41,3 +41,76 @@ export const NavLinks = styled.a`
 export const Azul = styled.span`
     color: rgb(18, 154, 239);
 `
+
+//------------Main--------------
+
+export const Main = styled.main`
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+`
+export const ImagensP1 = styled.div`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 120px;
+    margin-top: 100px;
+
+`
+export const ImagensP2 = styled.div`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 120px;
+
+`
+//--------Equipe---------
+export const Imagem = styled.div`
+    width: 17vw;
+    height: 36vh;
+    border: 3px solid transparent;
+    border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))10;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+`
+
+export const LinhaCentro = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 20vh;
+    gap: 160px;
+
+`
+
+export const L1 = styled.div`
+    width: 5vw;
+    height: 0.2vh;
+    border-radius: 1 rem;
+    background-color:  rgba(2, 188, 255, 1);
+`
+export const L2 = styled.div`
+    width: 5vw;
+    height: 0.2vh;
+    border-radius: 1 rem;
+    background-image: linear-gradient(to left, rgba(9, 51, 61, 1), rgba(2, 188, 255, 1));
+`
+export const L3 = styled.div`
+    width: 5vw;
+    height: 0.2vh;
+    border-radius: 1 rem;
+    background-image: linear-gradient(to left, rgba(9, 51, 61, 1), rgba(2, 188, 255, 1));
+`
+
+
