@@ -10,7 +10,7 @@ function Sobre(){
 
     // Função para redirecionar para a rota "/login"
     const handleStartClick = () => {
-      navigate('/escolherEngenharia'); // Redireciona para a rota desejada
+      navigate('/equipe'); // Redireciona para a rota desejada
     };
 
     return(
@@ -52,8 +52,8 @@ function Sobre(){
                 <Criadores>
                     <h2>Dos <Azul>Criadores</Azul></h2>
                     <p>
-                    Lorem ipsum dolor sit amet. Aut commodi voluptatem ut asperiores repellendus est perspiciatis <br /> 
-                    voluptatem non ipsa reprehenderit ut <br />
+                    Lorem ipsum dolor sit amet. Aut commodi voluptatem ut asperiores repellendus est perspiciatis 
+                    voluptatem non ipsa reprehenderit ut 
                     voluptatem alias et dicta maxime eos debitis exercitationem. Qui deleniti blanditiis quo sint animi est    
                     </p>
                 </Criadores>
