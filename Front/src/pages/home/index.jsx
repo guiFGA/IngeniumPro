@@ -1,8 +1,8 @@
 import api from '../../services/api'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import logo from '../../assets/imagens/logo.svg'
-import linha from '../../assets/imagens/DesignLinha.svg'
+import logo from '../../assets/imagens/logo.svg';
+import linha from '../../assets/imagens/DesignLinha.svg';
 import { NavBar, NavLinks, Nav, TextoEsquerda, TextoDireita, Azul, Main, BemVindo} from './home';
 import { Botao } from '../../components/botao/styles'
 

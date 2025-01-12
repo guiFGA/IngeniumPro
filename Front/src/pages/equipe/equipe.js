@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 //-------------------Header--------------------
 export const Nav = styled.nav`
     display: flex;
