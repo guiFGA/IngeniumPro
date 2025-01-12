@@ -1,4 +1,4 @@
-import { Nav, NavBar, NavLinks, Main, Prob, Azul, H1, ProbDetrito} from './problemas';
+import { Nav, NavBar, NavLinks, Main, Prob, Azul, H1, ProbDetrito, Link, Branco} from './problemas';
 import logo from '../../assets/imagens/logo.svg';
 import breve from '../../assets/imagens/Breve.svg'
 import lixeira from '../../assets/imagens/Lixeira.svg'
@@ -28,10 +28,13 @@ function Problemas() {
 
         <Main>
             <H1>E aí, qual <Azul>problema</Azul> <br /> vai <Azul>resolver</Azul>?</H1>
+            <Link href="">
             <ProbDetrito>
-                <h2>Detritos <br /><Azul>aeroespaciais</Azul></h2>
+                <h2><Branco>Detritos</Branco> <br /><Azul>aeroespaciais</Azul></h2>
                 <img src={lixeira} alt="Imagem lixeira" />  
             </ProbDetrito>
+            </Link>
+
             <Prob><img src={breve} alt="Imagem de em breve" /></Prob>
             <Prob><img src={breve} alt="Imagem de em breve" /></Prob>
         </Main>

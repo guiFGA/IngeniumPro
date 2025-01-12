@@ -103,3 +103,11 @@ export const ProbDetrito = styled.div`
 export const H1 = styled.h1`
     font-size: 2em;
 `
+
+export const Link = styled.a`
+    text-decoration: none;
+`
+
+export const Branco = styled.span`
+    color: #fff;
+`
