@@ -55,7 +55,7 @@ function Escolher() {
 
       <Main>
         <h1>Escolha sua <br /><Azul>Engenharia</Azul></h1>
-        <a href="">
+        <a href="http://localhost:5173/problemas">
           <AnimatedImage src={aero} alt="Imagem aeroespacial" />
         </a>
       </Main>
