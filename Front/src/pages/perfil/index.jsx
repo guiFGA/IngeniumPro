@@ -5,6 +5,7 @@ import {
     Botao, Botao2, FormPesquisa
 } from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
+import aero from '../../assets/imagens/Aeroespacial.svg'
 import manutencao from '../../assets/imagens/Manutencao.svg'
 import breve from '../../assets/imagens/Breve.svg'
 import { useEffect, useState } from 'react';
@@ -185,7 +186,7 @@ function Perfil() {
                     <Final>
                         <p>Área em aprendizado:</p>
                         <Engenharia>
-                            <img src={energia} alt="Foto engenharia de energia" />
+                            <img src={aero} alt="Foto Engenharia Aeroespacial" />
                         </Engenharia>
                     </Final>
 
