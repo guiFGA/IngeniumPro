@@ -65,10 +65,18 @@ const Cadastros = sequelize.define('cadastro', {
 
 });
 
-// Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-//Cadastros.sync({ force: true });
+Cadastros.associate = (Progresso) => {
+    Cadastros.hasMany(Progresso, {
+        foreignKey: 'cadastros_id',
+        as: 'progresso',
+        onDelete: 'CASCADE'
+    });
+};
 
-const Module = sequelize.define('Module', {
+// Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
+Cadastros.sync({ force: true });
+
+const Modulo = sequelize.define('Modulo', {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -79,21 +87,43 @@ const Module = sequelize.define('Module', {
     },
 });
 
-Module.hasOne(Module, { foreignKey: 'nextModuleId', as: 'nextModule' }); // Relaciona o próximo módulo
 
-//Module.sync({ force: true });
+// Relacionamento: Um módulo pode ter muitos registros de progresso
+Modulo.associate = (Progresso) => {
+    Modulo.hasMany(Progresso, {
+        foreignKey: 'modulo_id',
+        as: 'progresso',
+        onDelete: 'CASCADE'
+    });
+};
 
-const Progress = sequelize.define('Progress', {
+Modulo.sync({ force: true });
+
+const Progresso = sequelize.define('Progresso', {
     completed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
 });
 
-Progress.belongsTo(Cadastros);  // Associa Progress ao cadastros (muitos para 1)
-Progress.belongsTo(Module);  // Associa Progress ao Module (muitos para 1)
+Progresso.associate = () => {
+    Progresso.belongsTo(Cadastros, {
+        foreignKey: 'cadastros_id',
+        as: 'cadastros',
+        onDelete: 'CASCADE'
 
-//Progress.sync({ force: true });
+    });
+
+    Progresso.belongsTo(Modulo, {
+        foreignKey: 'modulo_id',
+        as: 'modulo',
+        onDelete: 'CASCADE'
+    });
+};
+
+
+
+Progresso.sync({ force: true });
 //------------------------------------------------------------------------------------------------------
 
 // Resolver diretório raiz
@@ -392,7 +422,7 @@ app.post('/requisitar', async (req, res) => {
 
     const id = req.body.id
 
-    const modulo = await Module.findOne({ where: { id: id } })
+    const modulo = await Modulo.findOne({ where: { id: id } })
     res.send(modulo)
 
 })
@@ -402,18 +432,18 @@ app.post('/requisitar', async (req, res) => {
 
 app.post('/marcar', async (req, res) => {
 
-    const id = req.body.id
+    const id = req.body.idSS
 
-    const progresso = await Progress.findOne({ where: { id: id } })
+    const progresso = await Progresso.findOne({ where: { id: id } })
     if (progresso.completed == 0) {
         await progresso.update({
             completed: true
-            
+
         })
         res.send("marcado como concluido")
     }
 
-    else{
+    else {
         await progresso.update({
             completed: false
         })
@@ -422,6 +452,30 @@ app.post('/marcar', async (req, res) => {
     }
 })
 //------------------------------------------------------------------
+
+async function consultarProgressoModulo(moduloId) {
+    const progressoModulo = await Progresso.findAll({
+        where: { modulo_id: moduloId },
+        include: [
+            { model: Cadastros, as: 'cadastros' },
+            { model: Modulo, as: 'modulo' }
+        ]
+    });
+
+    console.log(progressoModulo);
+}
+
+consultarProgressoModulo(1);  // Passando o ID do módulo para consultar
+
+
+
+
+
+
+
+
+
+//-----------------------------------------
 // Inicialização do servidor
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');
