@@ -13,6 +13,11 @@ function Modulos() {
     const [conteudo, SetConteudo] = useState('')
     const [clicked, setClicked] = useState(false);
 
+    const token = sessionStorage.getItem("authToken")
+    const decodede = JSON.parse(token);
+
+    console.log('token recebido' + decodede)
+
     //mudar o estado do botao
     const handleClick = () => {
         if(clicked==false){
@@ -26,7 +31,13 @@ function Modulos() {
     //rota para identificar qual é o modulo
     function requisitar(id) {
         api
-            .post('/requisitar', { id })
+            .post('/requisitar', { id }, {
+                headers: {
+                    
+                    'Authorization': decodede.data
+                    },
+                }
+            )
 
             .then((modulo) => {
 
@@ -56,7 +67,12 @@ function Modulos() {
 
     function marcar(id){
         api
-        .post('/marcar', { id })
+        .post('/marcar', { id },{
+            headers: {
+                    
+            'Authorization': decodede.data
+            },
+        })
 
         .then((response) => {
             alert(response.data)

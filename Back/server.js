@@ -34,7 +34,7 @@ sequelize
     .catch((erro) => console.log('Falha ao se conectar: ' + erro));
 
 // Definição do modelo (tabela) "Cadastros"
-const Cadastros = sequelize.define('cadastro', {
+const Cadastro = sequelize.define('cadastro', {
     email: {
         type: Sequelize.STRING,
         allowNull: false, // Impede valores nulos
@@ -65,16 +65,8 @@ const Cadastros = sequelize.define('cadastro', {
 
 });
 
-Cadastros.associate = (Progresso) => {
-    Cadastros.hasMany(Progresso, {
-        foreignKey: 'cadastros_id',
-        as: 'progresso',
-        onDelete: 'CASCADE'
-    });
-};
 
-// Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
-Cadastros.sync({ force: true });
+
 
 const Modulo = sequelize.define('Modulo', {
     title: {
@@ -88,16 +80,7 @@ const Modulo = sequelize.define('Modulo', {
 });
 
 
-// Relacionamento: Um módulo pode ter muitos registros de progresso
-Modulo.associate = (Progresso) => {
-    Modulo.hasMany(Progresso, {
-        foreignKey: 'modulo_id',
-        as: 'progresso',
-        onDelete: 'CASCADE'
-    });
-};
 
-Modulo.sync({ force: true });
 
 const Progresso = sequelize.define('Progresso', {
     completed: {
@@ -106,24 +89,13 @@ const Progresso = sequelize.define('Progresso', {
     },
 });
 
-Progresso.associate = () => {
-    Progresso.belongsTo(Cadastros, {
-        foreignKey: 'cadastros_id',
-        as: 'cadastros',
-        onDelete: 'CASCADE'
-
-    });
-
-    Progresso.belongsTo(Modulo, {
-        foreignKey: 'modulo_id',
-        as: 'modulo',
-        onDelete: 'CASCADE'
-    });
-};
+Cadastro.belongsToMany(Modulo, { through: 'Progresso' });
+Modulo.belongsToMany(Cadastro, { through: 'Progresso' });
 
 
-
-Progresso.sync({ force: true });
+// Sincronizar o modelo com o banco de dados (criação da tabela, apenas uma vez)
+//await sequelize.sync({ force: true }); // Sincroniza os modelos, recriando as tabelas
+//console.log('tabelas criadas')
 //------------------------------------------------------------------------------------------------------
 
 // Resolver diretório raiz
@@ -132,7 +104,7 @@ const __dirname = path.resolve();
 // Rota GET para retornar todos os cadastros
 app.get('/cadastro', async (req, res) => {
     try {
-        const users = await Cadastros.findAll(); // Busca todos os registros no banco
+        const users = await Cadastro.findAll(); // Busca todos os registros no banco
         res.json(users);
 
     } catch (err) {
@@ -153,7 +125,7 @@ app.post('/enviar', async (req, res) => {
 
     try {
         // Verificar se o email já existe no banco
-        const userExists = await Cadastros.findOne({ where: { email } });
+        const userExists = await Cadastro.findOne({ where: { email } });
         if (userExists) {
             return res.status(201).send('Email já cadastrado');
         }
@@ -162,7 +134,7 @@ app.post('/enviar', async (req, res) => {
         const hashedSenha = await bcrypt.hash(senha, 10);
 
         // Criar usuário no banco de dados
-        const novoUsuario = await Cadastros.create({
+        const novoUsuario = await Cadastro.create({
             email: email,
             senha: hashedSenha,
             usuario: nome,
@@ -190,7 +162,7 @@ app.post('/login', async (req, res) => {
 
     //pegando os dados do login
     const { email, senha } = req.body;
-    const user = await Cadastros.findOne({ where: { email } });
+    const user = await Cadastro.findOne({ where: { email } });
 
     //comparando o email e a senha do usuario
     if (!user || !(await bcrypt.compare(senha, user.senha))) {
@@ -249,7 +221,7 @@ app.post('/redefinir', async (req, res) => {
     try {
         // Verificar se existe o email do usuário
         const { email } = req.body;
-        const user = await Cadastros.findOne({ where: { email } });
+        const user = await Cadastro.findOne({ where: { email } });
         if (!user) {
             return res.status(404).json({ error: 'Email não encontrado' });
         }
@@ -291,7 +263,7 @@ app.post('/novasenha', async (req, res) => {
 
     try {
         const decoded = jwt.verify(token, SECRET_KEY);
-        const user = await Cadastros.findOne({ where: { id: decoded.id } });
+        const user = await Cadastro.findOne({ where: { id: decoded.id } });
 
         if (!user || user.resetToken !== token || user.resetTokenExpiry < Date.now()) {
             return res.status(400).json({ message: 'Token inválido ou expirado' });
@@ -353,7 +325,7 @@ const verifyToken = (req, res, next) => {
 
 app.get('/usuario', verifyToken, async (req, res) => {
 
-    const user = await Cadastros.findOne({ where: { id: req.userId } })
+    const user = await Cadastro.findOne({ where: { id: req.userId } })
     res.send(user)
 
 });
@@ -376,7 +348,7 @@ app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res)
     if (req.file) {
         res.json({ imageUrl: `http://localhost:3000/uploads/${req.file.filename}` });
         const imageUrl = 'http://localhost:3000/uploads/' + req.file.filename
-        const user = await Cadastros.findOne({ where: { id: req.userId } })
+        const user = await Cadastro.findOne({ where: { id: req.userId } })
         await user.update({
             foto: imageUrl
         });
@@ -390,7 +362,7 @@ app.post('/upload', upload.single('profileImage'), verifyToken, async (req, res)
 //rota para pegar pesquisar outros usuarios
 app.post('/pesquisar', async (req, res) => {
     const { pesquisar } = req.body
-    const user = await Cadastros.findOne({ where: { usuario: pesquisar } })
+    const user = await Cadastro.findOne({ where: { usuario: pesquisar } })
 
 
 
@@ -404,7 +376,7 @@ app.post('/mostrarUser', async (req, res) => {
 
     const usuario = req.body
     console.log(usuario.usuario)
-    const user = await Cadastros.findOne({ where: { usuario: usuario.usuario } })
+    const user = await Cadastro.findOne({ where: { usuario: usuario.usuario } })
 
     if (!user) {
         return res.send('usuario nao encontrada')
@@ -418,23 +390,44 @@ app.post('/mostrarUser', async (req, res) => {
 //---------------------------------------------------------------------
 //rota para identificar o modulo
 
-app.post('/requisitar', async (req, res) => {
+app.post('/requisitar', verifyToken, async (req, res) => {
 
-    const id = req.body.id
+    const id_modulo = req.body.id
+    const id_usuario = req.userId
 
-    const modulo = await Modulo.findOne({ where: { id: id } })
+    const modulo = await Modulo.findOne({ where: { id: id_modulo } })
     res.send(modulo)
 
+    //verificando se o progresso do usuario existe, caso nao, cria um
+
+    const user = await Progresso.findOne({ where: { cadastroId: id_usuario } });
+    if(!user){
+        const progresso = await Progresso.create({ 
+            cadastroId: id_usuario,
+            ModuloId: id_modulo
+    
+        })
+        try{
+            progresso
+        }catch(err){
+            console.log(err)
+        }
+        
+    }
 })
 
 //-------------------------------------------------------------------
-//rotapara marcar modulo como concluido
+//rota para marcar modulo como concluido
 
-app.post('/marcar', async (req, res) => {
+app.post('/marcar',verifyToken, async (req, res) => {
 
-    const id = req.body.idSS
+    
+    const id_usuario = req.userId
 
-    const progresso = await Progresso.findOne({ where: { id: id } })
+
+    const progresso = await Progresso.findOne({ where: { cadastroId: id_usuario } });
+
+
     if (progresso.completed == 0) {
         await progresso.update({
             completed: true
@@ -453,19 +446,7 @@ app.post('/marcar', async (req, res) => {
 })
 //------------------------------------------------------------------
 
-async function consultarProgressoModulo(moduloId) {
-    const progressoModulo = await Progresso.findAll({
-        where: { modulo_id: moduloId },
-        include: [
-            { model: Cadastros, as: 'cadastros' },
-            { model: Modulo, as: 'modulo' }
-        ]
-    });
 
-    console.log(progressoModulo);
-}
-
-consultarProgressoModulo(1);  // Passando o ID do módulo para consultar
 
 
 
