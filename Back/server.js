@@ -414,6 +414,24 @@ app.post('/requisitar', verifyToken, async (req, res) => {
         }
         
     }
+
+    console.log(Modulo.associations)
+    const cadastro = await Cadastro.findOne({
+        where: { usuario: 'if you die' },
+        include: Modulo, // Inclui os progressos associados
+        through: {
+            attributes: ['completed'], // Campos da tabela intermediária (Progresso)
+        },
+      });
+      
+      if (cadastro) {
+        // Itera pelos módulos associados
+        cadastro.Modulos.forEach((modulo) => {
+            console.log(`Módulo: ${modulo.title}`);
+            console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
+        });
+    }
+
 })
 
 //-------------------------------------------------------------------
@@ -443,6 +461,8 @@ app.post('/marcar',verifyToken, async (req, res) => {
         res.send("marcado como nao concluido")
         return
     }
+
+    
 })
 //------------------------------------------------------------------
 
