@@ -398,9 +398,10 @@ app.post('/requisitar', verifyToken, async (req, res) => {
     const modulo = await Modulo.findOne({ where: { id: id_modulo } })
     res.send(modulo)
 
-    //verificando se o progresso do usuario existe, caso nao, cria um
 
-    const user = await Progresso.findOne({ where: { cadastroId: id_usuario } });
+    //verificando se o progresso do usuario naquele modulo existe, caso nao, cria um
+
+    const user = await Progresso.findOne({ where: { cadastroId: id_usuario, ModuloId: id_modulo } });
     if(!user){
         const progresso = await Progresso.create({ 
             cadastroId: id_usuario,
@@ -441,9 +442,9 @@ app.post('/marcar',verifyToken, async (req, res) => {
 
     
     const id_usuario = req.userId
+    const id_modulo = req.body.id
 
-
-    const progresso = await Progresso.findOne({ where: { cadastroId: id_usuario } });
+    const progresso = await Progresso.findOne({ where: { cadastroId: id_usuario, ModuloId:id_modulo } });
 
 
     if (progresso.completed == 0) {
