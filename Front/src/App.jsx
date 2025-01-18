@@ -11,6 +11,7 @@ import OutroPerfil from './pages/outroPerfil';
 import Sobre from './pages/sobre';
 import Equipe from './pages/equipe';
 import Problemas from './pages/problemas';
+import Trilha from './pages/trilha';
 
 function App() {
   return (
@@ -47,7 +48,10 @@ function App() {
         <Route path="/equipe" element={<Equipe />} />
 
         {/*rota para página de problemas*/}
-        <Route path="/problemas" element={<PrivateRoute><Problemas/></PrivateRoute>} />
+        <Route path="/problemas" element={<PrivateRoute><Problemas/></PrivateRoute>} />        
+        
+        {/*rota para página de trilha*/}
+        <Route path="/trilha" element={<PrivateRoute><Trilha/></PrivateRoute>} />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />

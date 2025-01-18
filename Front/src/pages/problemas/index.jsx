@@ -28,7 +28,7 @@ function Problemas() {
 
         <Main>
             <H1>E aí, qual <Azul>problema</Azul> <br /> vai <Azul>resolver</Azul>?</H1>
-            <Link href="">
+            <Link href="http://localhost:5173/trilha">
             <ProbDetrito>
                 <h2><Branco>Detritos</Branco> <br /><Azul>aeroespaciais</Azul></h2>
                 <img src={lixeira} alt="Imagem lixeira" />  
