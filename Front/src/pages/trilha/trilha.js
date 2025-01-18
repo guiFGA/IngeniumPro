@@ -109,7 +109,7 @@ export const Caixa = styled.div`
     padding: 30px;
     gap: 50px;
     background-color: rgba(4, 11, 16, 1);
-
+    box-shadow: 1.5px 2px 3px black;
 
     @media (max-width: 1390px) { /* Telas menores que 768px */
 

@@ -116,6 +116,20 @@ function Trilha(){
                     </Mod>
                 </Caixa>
 
+
+                <Caixa>
+                    <Titulo>
+                        <H3>Módulo <Azul>5</Azul></H3>
+                    </Titulo>
+                    <Mod>
+                        <Link href="http://localhost:5173/perfil">
+                            <Modulos>
+                                <TextoInterno>Aprendendo a Aprender</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+                    </Mod>
+                </Caixa>
+
             </Main>
         </div>
     )
