@@ -1,6 +1,6 @@
 import logo from '../../assets/imagens/logo.svg'
 import { Nav, NavBar, NavLinks, Azul, Main, Apresentacao, H2 , P1, P2, PEspecial, Dir, Esq,
-        Caixa, Mod, H3, Titulo, Modulos, Link, TextoInterno, pulse} from './trilha';
+        Caixa, Mod, H3, Titulo, Modulos, Link, TextoInterno} from './trilha';
 
 
 function Trilha(){
@@ -54,7 +54,7 @@ function Trilha(){
                     <Mod>
                         <Link href="http://localhost:5173/perfil">
                             <Modulos>
-                                <TextoInterno>Aprendendo a Aprender</TextoInterno>
+                                <TextoInterno>Introdução</TextoInterno>
                             </Modulos>                            
                         </Link>
                     </Mod>
