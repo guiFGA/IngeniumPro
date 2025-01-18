@@ -10,6 +10,7 @@ import Perfil from './pages/perfil';
 import OutroPerfil from './pages/outroPerfil';
 import Sobre from './pages/sobre';
 import Equipe from './pages/equipe';
+import Problemas from './pages/problemas';
 
 function App() {
   return (
@@ -44,7 +45,9 @@ function App() {
 
         {/*rota para página equipe*/}
         <Route path="/equipe" element={<Equipe />} />
-     
+
+        {/*rota para página de problemas*/}
+        <Route path="/problemas" element={<PrivateRoute><Problemas/></PrivateRoute>} />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />
