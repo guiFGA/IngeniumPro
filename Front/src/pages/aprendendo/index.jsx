@@ -60,14 +60,14 @@ function Aprendendo(){
                             </Click>
                         </Link>
 
-                        <Link href="">
+                        <Link href="#referenciaPratique">
                             <Click>
                                 <Bolinha><p>3</p></Bolinha>
                                 <p>Pratique muito</p>
                             </Click>
                         </Link>
 
-                        <Link href="">
+                        <Link href="#referenciaAprofunde">
                             <Click>
                                 <Bolinha><p>4</p></Bolinha>
                                 <p>Aprofunde-se</p>
@@ -91,7 +91,7 @@ function Aprendendo(){
                         </p>
                     </TextoModelo>
                 
-                    <TextoModelo id="associe">
+                    <TextoModelo id="referenciaPratique">
                         <Cima>
                             <Bolinha><p>2</p></Bolinha>
                             <Paragrafo>Associe o conteúdo</Paragrafo>
@@ -105,7 +105,7 @@ function Aprendendo(){
                         </p>
                     </TextoModelo>
                     
-                    <TextoModelo id="pratique">
+                    <TextoModelo id="referenciaAprofunde">
                         <Cima>
                             <Bolinha><p>3</p></Bolinha>
                             <Paragrafo>Pratique muito</Paragrafo>
@@ -119,7 +119,7 @@ function Aprendendo(){
                         </p>
                     </TextoModelo>
                     
-                    <TextoModelo id="aprofunde">
+                    <TextoModelo>
                         <Cima>
                             <Bolinha><p>4</p></Bolinha>
                             <Paragrafo>Aprofunde-se</Paragrafo>
