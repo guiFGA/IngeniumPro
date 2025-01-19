@@ -13,6 +13,7 @@ import Equipe from './pages/equipe';
 import Problemas from './pages/problemas';
 import Trilha from './pages/trilha';
 import Modulo0 from './pages/modulo0';
+import Aprendendo from './pages/aprendendo';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
 
         {/*rota para página de modulo0*/}
         <Route path="/modulo0" element={<PrivateRoute><Modulo0/></PrivateRoute>} />
+
+        {/*rota para página de Aprendendo a Aprender*/}
+        <Route path="/aprendendoaaprender" element={<PrivateRoute><Aprendendo/></PrivateRoute>} />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />
