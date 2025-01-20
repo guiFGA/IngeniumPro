@@ -65,12 +65,12 @@ function Perfil() {
             }
             )
             //capiturando os dados do usuario que vem do backend
-            .then((user) => {
-                const usuario = user
-                setNomeUsuario(usuario.data.usuario)
-                setEmailUsuario(usuario.data.email)
-                setDesdeUsuario(new Date(usuario.data.createdAt).toLocaleDateString('pt-BR'))
-                setPreview(usuario.data.foto); // Mostra a nova imagem após o upload
+            .then((response) => {
+                const usuario = response.data.user
+                setNomeUsuario(usuario.usuario)
+                setEmailUsuario(usuario.email)
+                setDesdeUsuario(new Date(usuario.createdAt).toLocaleDateString('pt-BR'))
+                setPreview(usuario.foto); // Mostra a nova imagem após o upload
 
             })
 

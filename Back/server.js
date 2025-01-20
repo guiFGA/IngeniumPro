@@ -325,8 +325,34 @@ const verifyToken = (req, res, next) => {
 
 app.get('/usuario', verifyToken, async (req, res) => {
 
+    //buscar dados do usuario
     const user = await Cadastro.findOne({ where: { id: req.userId } })
-    res.send(user)
+
+    
+    const cadastro = await Cadastro.findOne({
+        where: { id: req.userId },
+        include: Modulo, // Inclui os progressos associados
+        through: {
+            attributes: ['completed'], // Campos da tabela intermediária (Progresso)
+        },
+      });
+      
+      var completos = 0;
+      
+
+      if (cadastro) {
+        // Itera pelos módulos associados
+       
+        cadastro.Modulos.forEach((modulo) => {
+            console.log(`Módulo: ${modulo.title}`);
+            console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
+            if('Concluído'){
+                completos += 1
+            }
+        });
+        console.log(completos)
+    }
+    res.json({user, completos})
 
 });
 
@@ -467,7 +493,7 @@ app.post('/marcar',verifyToken, async (req, res) => {
 })
 //------------------------------------------------------------------
 
-
+//Rota para barra de progresso do usuario
 
 
 
