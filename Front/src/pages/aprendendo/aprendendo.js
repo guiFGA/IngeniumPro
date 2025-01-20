@@ -185,4 +185,6 @@ export const Paragrafo2 = styled.p`
     text-indent: 4em;
 
 `
-
+export const Referencia = styled.a`
+    color: rgba(2, 188, 255, 1);
+`
