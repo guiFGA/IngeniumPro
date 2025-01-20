@@ -269,7 +269,7 @@ function Aprendendo(){
                             ativa e reflexiva.
                         </Paragrafo2>
 
-                        <h2><Azul>Como usar?</Azul></h2>
+                        <h3><Azul>Como usar?</Azul></h3>
 
                         <Paragrafo2>
                             Após estudar um conceito ou tópico de engenharia, tente explicar o que você aprendeu de
@@ -277,13 +277,13 @@ function Aprendendo(){
                             até ser capaz de explicá-lo de forma concisa.
                         </Paragrafo2>
 
-                        <h2><Azul>Benefícios:</Azul></h2>
+                        <h3><Azul>Benefícios:</Azul></h3>
 
                         <Paragrafo2>
                             Identificação de lacunas no conhecimento, melhor compreensão e retenção dos conceitos.
                         </Paragrafo2>
 
-                        <h2><Azul>Saiba mais:</Azul></h2>
+                        <h3><Azul>Saiba mais:</Azul></h3>
 
                         <Paragrafo2>
                             Para aprofundar seu entendimento sobre o Método de Feynman, recomendo o vídeo 
@@ -300,6 +300,136 @@ function Aprendendo(){
 
                         <Paragrafo></Paragrafo>
                     </PesquisaModelo>  
+
+                    <PesquisaModelo id='Espaçamento'>
+                        <h2>Espaçamento <Azul>(Spaced Repetition)</Azul></h2>
+                        <Paragrafo2> 
+                            O método de repetição espaçada se baseia na ideia de revisar o conteúdo em intervalos 
+                            crescentes de tempo. Isso ajuda a consolidar a memória de longo prazo, garantindo que o que 
+                            você aprendeu não seja esquecido rapidamente.
+
+
+
+                        </Paragrafo2>
+
+                        <h3><Azul>Como usar?</Azul></h3>
+
+                        <Paragrafo2>
+                            Utilize ferramentas de flashcards (como Anki ou Quizlet) para revisar conceitos e
+                            fórmulas aprendidas de forma espaçada. A cada revisão, o intervalo entre as repetições aumenta 
+                            conforme você vai se lembrando melhor do conteúdo.
+                        </Paragrafo2>
+
+                        <h3><Azul>Benefícios:</Azul></h3>
+
+                        <Paragrafo2>
+                            Melhora a retenção de longo prazo e evita o esquecimento rápido.
+                        </Paragrafo2>
+
+                        <h3><Azul>Saiba mais:</Azul></h3>
+
+                        <Paragrafo2>
+                            Para compreender melhor o método de Repetição Espaçada, recomenda-se o vídeo 
+                            "Você conhece o sistema de repetição espaçada?", que aborda de forma clara como 
+                            aplicar o método para melhorar a retenção de informações. Ele está disponível no 
+                            seguinte link: 
+                            <br />
+                            <Referencia href="https://pt-br.facebook.com/hablaespanholoficial/videos/voc%C3%AA-conhece-o-sistema-de-repeti%C3%A7%C3%A3o-espa%C3%A7ada-%C3%A9-um-dos-melhores-m%C3%A9todos-para-apre/875010099917965/?utm_source=chatgpt.com" targe="black">Você conhece o sistema de repetição espaçada?</Referencia>
+                        </Paragrafo2>
+
+                    </PesquisaModelo> 
+
+                    <PesquisaModelo id='EstudoAtivo'>
+                        <h2>Estudo <Azul>Ativo</Azul> e Resolução de <Azul>Problemas:</Azul></h2>
+                        <Paragrafo2> 
+                            Ao invés de apenas ler ou assistir vídeos sobre um tema, a resolução de problemas
+                            práticos é essencial para a engenharia. Isso ativa o cérebro de maneira mais eficaz 
+                            e permite que você compreenda melhor os conceitos.
+                        </Paragrafo2>
+
+                        <h3><Azul>Como usar?</Azul></h3>
+
+                        <Paragrafo2>
+                            Sempre que estudar uma teoria ou conceito, busque resoluções de problemas relacionados.
+                            Se possível, use livros de exercícios ou plataformas online como o Khan Academy, Coursera ou 
+                            MIT OpenCourseWare.
+                        </Paragrafo2>
+
+                        <h3><Azul>Benefícios:</Azul></h3>
+
+                        <Paragrafo2>
+                            Desenvolve habilidades de resolução de problemas e reforça a compreensão dos conceitos.
+                        </Paragrafo2>
+
+                        <h3><Azul>Saiba mais:</Azul></h3>
+
+                        <Paragrafo2>
+                            O vídeo "O que é Estudo Ativo e como ele pode te ajudar nos estudos" explica como utilizar
+                            o método de Estudo Ativo e Resolução de Problemas para aprimorar a compreensão e a retenção 
+                            de informações. Ele pode ser acessado pelo link: 
+                            <br />
+                            <Referencia href="https://pt-br.facebook.com/hablaespanholoficial/videos/voc%C3%AA-conhece-o-sistema-de-repeti%C3%A7%C3%A3o-espa%C3%A7ada-%C3%A9-um-dos-melhores-m%C3%A9todos-para-apre/875010099917965/?utm_source=chatgpt.com" targe="black">Revisar vídeo</Referencia>
+                        </Paragrafo2>
+
+                    </PesquisaModelo> 
+
+                    <PesquisaModelo id='Pomodoro'>
+                        <h2><Azul>P</Azul>omodoro</h2>
+                        <Paragrafo2> 
+                            Para manter o foco e a produtividade por períodos mais longos, a técnica Pomodoro 
+                            é eficaz. Ela envolve dividir o tempo de estudo em blocos de 25 minutos, seguidos 
+                            por uma pausa de 5 minutos. Após quatro sessões, você faz uma pausa mais longa.
+                        </Paragrafo2>
+
+                        <h3><Azul>Como usar?</Azul></h3>
+
+                        <Paragrafo2>
+                            Utilize um temporizador para organizar seu tempo de estudo. A cada intervalo de 
+                            25 minutos, concentre-se em um único conceito ou problema. Após cada Pomodoro, faça
+                            uma pausa curta para descansar, o que ajuda a evitar o cansaço mental.
+                        </Paragrafo2>
+
+                        <h3><Azul>Benefícios:</Azul></h3>
+
+                        <Paragrafo2>
+                            Melhora o foco e ajuda a manter a concentração, evitando a sobrecarga cognitiva.
+                        </Paragrafo2>
+
+                        <h3><Azul>Saiba mais:</Azul></h3>
+
+                        <Paragrafo2>
+                            Para aprofundar o entendimento sobre a Técnica Pomodoro, recomenda-se o vídeo 
+                            "The Pomodoro Technique — Why it works & how to do it", disponível no site Todoist. 
+                            Assista ao vídeo no link a seguir:
+
+                            <br />
+                            <Referencia href="https://todoist.com/pt-BR/productivity-methods/pomodoro-technique" targe="black">The Pomodoro Technique — Why it works & how to do it</Referencia>
+                        </Paragrafo2>
+
+                    </PesquisaModelo>
+
+                    <PesquisaModelo id='Conclusão'>
+                        <h2>PARABÉNS</h2>
+                        <Paragrafo2> 
+                            Parabéns por concluir este módulo! Você agora está equipado com métodos poderosos
+                            para aprimorar sua aprendizagem e aplicá-la de forma prática e eficaz. Com técnicas
+                            como a Resolução de Problemas, Método de Feynman, Repetição Espaçada, Estudo Ativo 
+                            e a Técnica Pomodoro, você tem uma variedade de ferramentas para enfrentar desafios e
+                            conquistar novos conhecimentos.
+                        </Paragrafo2>
+
+                        <Paragrafo2>
+                            Lembre-se, o aprendizado é uma jornada contínua, e a aplicação dessas estratégias 
+                            pode transformar a maneira como você estuda, absorve e utiliza as informações. 
+                            Continue praticando, experimentando e ajustando esses métodos para encontrar o que
+                            funciona melhor para você.
+                        </Paragrafo2>
+
+                        <Paragrafo2>
+                            <Azul>Agora, é hora de colocar tudo o que você aprendeu em prática! Boa sorte e sucesso nos 
+                            seus próximos passos.</Azul>
+                        </Paragrafo2>
+                    </PesquisaModelo> 
                 </Textos>
             </Main>
         </div>
