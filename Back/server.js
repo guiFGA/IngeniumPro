@@ -328,31 +328,31 @@ app.get('/usuario', verifyToken, async (req, res) => {
     //buscar dados do usuario
     const user = await Cadastro.findOne({ where: { id: req.userId } })
 
-    
+
     const cadastro = await Cadastro.findOne({
         where: { id: req.userId },
         include: Modulo, // Inclui os progressos associados
         through: {
             attributes: ['completed'], // Campos da tabela intermediária (Progresso)
         },
-      });
-      
-      var completos = 0;
-      
+    });
 
-      if (cadastro) {
+    var completos = 0;
+
+
+    if (cadastro) {
         // Itera pelos módulos associados
-       
+
         cadastro.Modulos.forEach((modulo) => {
             console.log(`Módulo: ${modulo.title}`);
             console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
-            if('Concluído'){
+            if ('Concluído') {
                 completos += 1
             }
         });
         console.log(completos)
     }
-    res.json({user, completos})
+    res.json({ user, completos })
 
 });
 
@@ -408,10 +408,34 @@ app.post('/mostrarUser', async (req, res) => {
         return res.send('usuario nao encontrada')
     }
 
+    const cadastro = await Cadastro.findOne({
+        where: { usuario: usuario.usuario },
+        include: Modulo, // Inclui os progressos associados
+        through: {
+            attributes: ['completed'], // Campos da tabela intermediária (Progresso)
+        },
+    });
 
-    return res.send(user)
+    var completos = 0;
 
 
+    if (cadastro) {
+        // Itera pelos módulos associados
+
+        cadastro.Modulos.forEach((modulo) => {
+            console.log(`Módulo: ${modulo.title}`);
+            console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
+            if ('Concluído') {
+                completos += 1
+            }
+        });
+
+       
+
+
+    }
+
+    return res.json({user, completos})
 });
 //---------------------------------------------------------------------
 //rota para identificar o modulo
@@ -428,18 +452,18 @@ app.post('/requisitar', verifyToken, async (req, res) => {
     //verificando se o progresso do usuario naquele modulo existe, caso nao, cria um
 
     const user = await Progresso.findOne({ where: { cadastroId: id_usuario, ModuloId: id_modulo } });
-    if(!user){
-        const progresso = await Progresso.create({ 
+    if (!user) {
+        const progresso = await Progresso.create({
             cadastroId: id_usuario,
             ModuloId: id_modulo
-    
+
         })
-        try{
+        try {
             progresso
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
-        
+
     }
 
     console.log(Modulo.associations)
@@ -449,9 +473,9 @@ app.post('/requisitar', verifyToken, async (req, res) => {
         through: {
             attributes: ['completed'], // Campos da tabela intermediária (Progresso)
         },
-      });
-      
-      if (cadastro) {
+    });
+
+    if (cadastro) {
         // Itera pelos módulos associados
         cadastro.Modulos.forEach((modulo) => {
             console.log(`Módulo: ${modulo.title}`);
@@ -464,13 +488,13 @@ app.post('/requisitar', verifyToken, async (req, res) => {
 //-------------------------------------------------------------------
 //rota para marcar modulo como concluido
 
-app.post('/marcar',verifyToken, async (req, res) => {
+app.post('/marcar', verifyToken, async (req, res) => {
 
-    
+
     const id_usuario = req.userId
     const id_modulo = req.body.id
 
-    const progresso = await Progresso.findOne({ where: { cadastroId: id_usuario, ModuloId:id_modulo } });
+    const progresso = await Progresso.findOne({ where: { cadastroId: id_usuario, ModuloId: id_modulo } });
 
 
     if (progresso.completed == 0) {
@@ -489,7 +513,7 @@ app.post('/marcar',verifyToken, async (req, res) => {
         return
     }
 
-    
+
 })
 //------------------------------------------------------------------
 

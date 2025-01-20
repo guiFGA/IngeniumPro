@@ -8,6 +8,7 @@ import breve from '../../assets/imagens/Breve.svg'
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
+import { ProgressBar } from 'react-bootstrap';
 
 
 
@@ -22,6 +23,7 @@ function OutroPerfil() {
     const [desdeUsuario, setDesdeUsuario] = useState('')
     const [preview, setPreview] = useState('')
     const {usuario} = useParams()
+    const [progresso, setProgresso] = useState('')
     
 
     
@@ -34,12 +36,13 @@ function OutroPerfil() {
             .post('/mostrarUser', {usuario}
             )
             //capturando os dados do usuario que vem do backend
-            .then((user) => {
-                const usuario = user
-                setNomeUsuario(usuario.data.usuario)
-                setEmailUsuario(usuario.data.email)
-                setDesdeUsuario(new Date(usuario.data.createdAt).toLocaleDateString('pt-BR'))
-                setPreview(usuario.data.foto); // Mostra a nova imagem após o upload
+            .then((response) => {
+                const usuario = response.data.user
+                setNomeUsuario(usuario.usuario)
+                setEmailUsuario(usuario.email)
+                setDesdeUsuario(new Date(usuario.createdAt).toLocaleDateString('pt-BR'))
+                setPreview(usuario.foto); // Mostra a nova imagem após o upload
+                setProgresso(response.data.completos/5 *100)
 
             })
 
@@ -113,7 +116,13 @@ function OutroPerfil() {
                 <Caixas>
                     <CaixaDirCima>
                         <h2>Progresso</h2>
-                        
+                        <div style={{ textAlign: 'center', marginTop: '50px', minWidth: '200px', height: '2000px' }}>
+                            <div style={{ height: '300px', minWidth: '600px', margin: '0 auto' }}>
+                                <ProgressBar now={progresso} label={`${progresso}%`} />
+                                <h5>Detritos Espaciais</h5>
+                            </div>
+
+                        </div>
 
 
 

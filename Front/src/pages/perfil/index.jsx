@@ -1,14 +1,17 @@
 import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
-    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, SalvarImg, Input,
+    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, Input,
     Botao, Botao2, FormPesquisa
 } from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
-import manutencao from '../../assets/imagens/Manutencao.svg'
+
 import breve from '../../assets/imagens/Breve.svg'
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ProgressBar } from 'react-bootstrap';
+
 
 
 
@@ -20,6 +23,7 @@ function Perfil() {
     const [image, setImage] = useState('');
     const [preview, setPreview] = useState('');
     const [pesquisar, setPesquisar] = useState('')
+    const [progresso, setProgresso] = useState('')
 
     // Lidar com a pré-visualização da imagem
     const handleImageChange = (e) => {
@@ -71,6 +75,8 @@ function Perfil() {
                 setEmailUsuario(usuario.email)
                 setDesdeUsuario(new Date(usuario.createdAt).toLocaleDateString('pt-BR'))
                 setPreview(usuario.foto); // Mostra a nova imagem após o upload
+                setProgresso(response.data.completos/5 *100)
+                console.log(progresso)
 
             })
 
@@ -92,7 +98,7 @@ function Perfil() {
 
 
             .then((user) => {
-                if (user.data.usuario==undefined) {
+                if (user.data.usuario == undefined) {
                     return alert('usuario nao encontrado')
                 }
                 else {
@@ -117,7 +123,7 @@ function Perfil() {
                     </div>
                     <div className="links">
                         <NavBar>
-                            
+
                             <FormPesquisa onSubmit={handlesubmit}>
                                 <Input
                                     type="text"
@@ -167,8 +173,8 @@ function Perfil() {
                                         style={{ display: 'none' }}
                                     />
                                 </div>
-                               
-                               <Botao type="submit" style={{ marginTop: '10px' }}>Salvar Foto</Botao>
+
+                                <Botao type="submit" style={{ marginTop: '10px' }}>Salvar Foto</Botao>
                             </form>
                         </Img>
                         <Nomes>
@@ -195,6 +201,13 @@ function Perfil() {
                     <CaixaDirCima>
                         <h2>Progresso</h2>
 
+                        <div style={{ textAlign: 'center', marginTop: '50px', minWidth: '200px', height: '2000px' }}>
+                            <div style={{ height: '300px', minWidth: '600px', margin: '0 auto' }}>
+                                <ProgressBar now={progresso} label={`${progresso}%`} />
+                                <h5>Detritos Espaciais</h5>
+                            </div>
+
+                        </div>
                     </CaixaDirCima>
 
                     <CaixaDirBaixo>
