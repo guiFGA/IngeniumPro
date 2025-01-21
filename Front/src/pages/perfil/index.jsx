@@ -207,7 +207,7 @@ function Perfil() {
                         <Progresso>
 
                             <p>Detritos Espaciais</p>
-                            <ProgressBar now={progresso} label={`${progresso}%`} style={{width:'30vw', height:'3.5vh', borderRadius:'2rem', fontSize:'1rem'}} />
+                            <ProgressBar now={progresso} label={`${progresso}%`} style={{width:'27vw', height:'3.0vh', borderRadius:'2rem', fontSize:'1rem'}} />
                             
                         </Progresso>
 

@@ -1,7 +1,7 @@
 import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
-    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul
+    Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, Progresso
 } from './outroPerfil';
 import energia from '../../assets/imagens/Energia.svg'
 import breve from '../../assets/imagens/Breve.svg'
@@ -22,18 +22,18 @@ function OutroPerfil() {
     const [emailUsuario, setEmailUsuario] = useState(''); // Estado para armazenar o nome do usuário
     const [desdeUsuario, setDesdeUsuario] = useState('')
     const [preview, setPreview] = useState('')
-    const {usuario} = useParams()
+    const { usuario } = useParams()
     const [progresso, setProgresso] = useState('')
-    
 
-    
+
+
 
     function enviar() {
 
 
-        
+
         api
-            .post('/mostrarUser', {usuario}
+            .post('/mostrarUser', { usuario }
             )
             //capturando os dados do usuario que vem do backend
             .then((response) => {
@@ -42,19 +42,19 @@ function OutroPerfil() {
                 setEmailUsuario(usuario.email)
                 setDesdeUsuario(new Date(usuario.createdAt).toLocaleDateString('pt-BR'))
                 setPreview(usuario.foto); // Mostra a nova imagem após o upload
-                setProgresso(response.data.completos/5 *100)
+                setProgresso(response.data.completos / 5 * 100)
 
             })
 
     }
 
     useEffect(() => {
-        
+
         enviar(); // Chamada quando o componente é montado
 
     }, []); // O array vazio [] garante que só será chamado uma vez
 
- 
+
 
 
     return (
@@ -82,16 +82,16 @@ function OutroPerfil() {
                     <Topo>
                         <Img>
 
-                          
 
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            style={{ width: '100px', height: '100px' }}
-                                        />
 
-                                  
-                                  
+                            <img
+                                src={preview}
+                                alt="Preview"
+                                style={{ width: '100px', height: '100px' }}
+                            />
+
+
+
                         </Img>
                         <Nomes>
                             <p>{nomeUsuario || 'Carregando...'}</p>
@@ -115,14 +115,14 @@ function OutroPerfil() {
 
                 <Caixas>
                     <CaixaDirCima>
-                        <h2>Progresso</h2>
-                        <div style={{ textAlign: 'center', marginTop: '50px', minWidth: '200px', height: '2000px' }}>
-                            <div style={{ height: '300px', minWidth: '600px', margin: '0 auto' }}>
-                                <ProgressBar now={progresso} label={`${progresso}%`} />
-                                <h5>Detritos Espaciais</h5>
-                            </div>
+                        <h2>Progressos</h2>
 
-                        </div>
+                        <Progresso>
+
+                            <p>Detritos Espaciais</p>
+                            <ProgressBar now={progresso} label={`${progresso}%`} style={{ width: '27vw', height: '3.0vh', borderRadius: '2rem', fontSize: '1rem', fontStyle:'italic' }} />
+
+                        </Progresso>
 
 
 
