@@ -14,6 +14,7 @@ import Problemas from './pages/problemas';
 import Trilha from './pages/trilha';
 import Modulo0 from './pages/modulo0';
 import Aprendendo from './pages/aprendendo';
+import Entendendo from './pages/entendendo';
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
 
         {/*rota para página de Aprendendo a Aprender*/}
         <Route path="/aprendendoaaprender" element={<PrivateRoute><Aprendendo/></PrivateRoute>} />
+
+        {/*rota para página de Aprendendo a Aprender*/}
+        <Route path="/entendendooproblema" element={<PrivateRoute><Entendendo/></PrivateRoute>} />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<div>404 - Página não encontrada</div>} />

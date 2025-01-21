@@ -1,7 +1,7 @@
 import logo from '../../assets/imagens/logo.svg'
-import { Nav, NavBar, NavLinks, Caixa, Main, Topo, Azul, Titulo, Linha, Baixo, Click, Bolinha, Link} from './modulo0';
+import { Nav, NavBar, NavLinks, Caixa, Main, Topo, Azul, Titulo, Linha} from './entendendo';
 
-function Modulo0(){
+function Entendendo(){
     return(
         <div>
             <header>
@@ -26,7 +26,7 @@ function Modulo0(){
                 <Caixa>
                     <Topo>
                         <Titulo>
-                            Módulo 0 <br /><Azul>Introdução</Azul>
+                            Entendendo <br /><Azul> o Problema</Azul>
                         </Titulo>
 
                         <Linha></Linha>
@@ -42,26 +42,10 @@ function Modulo0(){
                         4o  sit amet, consectetur adipiscing elit. Sed euismod, nisi at facilisis pretium, 
                         lorem eros tincidunt lacus, sit amet fermentum nunc justo 
                     </p>
-
-                    <Baixo>
-                        <Link href="http://localhost:5173/aprendendoaaprender">
-                            <Click>
-                                <Bolinha><p>1</p></Bolinha>
-                                <p>Aprendendo a Aprender</p>
-                            </Click>
-                        </Link>
-                            
-                        <Link href="http://localhost:5173/entendendooproblema">
-                            <Click>
-                                <Bolinha><p>2</p></Bolinha>
-                                <p>Entendendo o Problema</p>
-                            </Click>
-                        </Link>
-                    </Baixo>
                 </Caixa>
             </Main>
         </div>
     )    
 }
 
-export default Modulo0;
+export default Entendendo;
