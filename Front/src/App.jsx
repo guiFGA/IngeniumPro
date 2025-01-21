@@ -49,6 +49,19 @@ function App() {
         {/*rota para os modulos*/}
         <Route path="/conteudo/:id" element={<PrivateRoute><Modulos/></PrivateRoute>} />
 
+        {/*rota para página sobre nós*/}
+         <Route path="/sobre" element={<Sobre />} />
+
+        {/*rota para página equipe*/}
+        <Route path="/equipe" element={<Equipe />} />
+
+        {/*rota para página de problemas*/}
+        <Route path="/problemas" element={<PrivateRoute><Problemas/></PrivateRoute>} />        
+
+        {/*rota para página de trilha*/}
+        <Route path="/trilha" element={<PrivateRoute><Trilha/></PrivateRoute>} />
+
+
 
 
      
