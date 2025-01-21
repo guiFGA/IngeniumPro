@@ -10,6 +10,10 @@ import Perfil from './pages/perfil';
 import OutroPerfil from './pages/outroPerfil';
 import Conteudo from './pages/conteudo';
 import Modulos from './pages/modulos';
+import Sobre from './pages/sobre';
+import Equipe from './pages/equipe';
+import Problemas from './pages/problemas';
+import Trilha from './pages/trilha';
 
 function App() {
   return (
