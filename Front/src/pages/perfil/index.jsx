@@ -2,7 +2,7 @@ import logo from '../../assets/imagens/logo.svg'
 import {
     NavBar, NavLinks, Nav, CaixaEsquerda, CaixaDirCima, CaixaDirBaixo,
     Main, Caixas, Topo, Img, Nomes, Meio, Final, Engenharia, Azul, Input,
-    Botao, Botao2, FormPesquisa
+    Botao, Botao2, FormPesquisa, Progresso
 } from './perfil';
 import energia from '../../assets/imagens/Energia.svg'
 import aero from '../../assets/imagens/Aeroespacial.svg'
@@ -201,15 +201,17 @@ function Perfil() {
 
                 <Caixas>
                     <CaixaDirCima>
-                        <h2>Progresso</h2>
+                        <h2 >Progressos</h2>
 
-                        <div style={{ textAlign: 'center', marginTop: '50px', minWidth: '200px', height: '2000px' }}>
-                            <div style={{ height: '300px', minWidth: '600px', margin: '0 auto' }}>
-                                <ProgressBar now={progresso} label={`${progresso}%`} />
-                                <h5>Detritos Espaciais</h5>
-                            </div>
+                     
+                        <Progresso>
 
-                        </div>
+                            <p>Detritos Espaciais</p>
+                            <ProgressBar now={progresso} label={`${progresso}%`} style={{width:'30vw', height:'3.5vh', borderRadius:'2rem', fontSize:'1rem'}} />
+                            
+                        </Progresso>
+
+                        
                     </CaixaDirCima>
 
                     <CaixaDirBaixo>

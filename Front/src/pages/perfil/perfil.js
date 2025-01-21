@@ -74,8 +74,10 @@ export const Caixas = styled.div`
 `
 export const CaixaDirCima = styled.div`
     display: flex;
-    justify-content: center;
-    padding-top: 20px;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+    padding-top: 60px;
     color: #fff;
     width: 50vw;
     height: 35vh;
@@ -222,4 +224,15 @@ export const FormPesquisa = styled.form`
     display: flex;
     align-items: center;
     gap: 15px;
+`
+
+export const Progresso = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap: 1rem;
+    
+    width: 50vw;
+   
 `
