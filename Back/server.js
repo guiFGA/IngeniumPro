@@ -333,7 +333,7 @@ app.get('/usuario', verifyToken, async (req, res) => {
         where: { id: req.userId },
         include: Modulo, // Inclui os progressos associados
         through: {
-            attributes: ['completed'], // Campos da tabela intermediária (Progresso)
+            attributes: ['completed'], // Campo da tabela intermediária (Progresso)
         },
     });
 
@@ -346,7 +346,7 @@ app.get('/usuario', verifyToken, async (req, res) => {
         cadastro.Modulos.forEach((modulo) => {
             console.log(`Módulo: ${modulo.title}`);
             console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
-            if ('Concluído') {
+            if (modulo.Progresso.completed == 1) {
                 completos += 1
             }
         });
@@ -425,12 +425,12 @@ app.post('/mostrarUser', async (req, res) => {
         cadastro.Modulos.forEach((modulo) => {
             console.log(`Módulo: ${modulo.title}`);
             console.log(`Progresso: ${modulo.Progresso.completed ? 'Concluído' : 'Pendente'}`);
-            if ('Concluído') {
+            if (modulo.Progresso.completed == 1) {
                 completos += 1
             }
         });
 
-       
+       console.log(completos)
 
 
     }
