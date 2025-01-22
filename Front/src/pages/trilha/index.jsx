@@ -52,7 +52,7 @@ function Trilha(){
                         <H3>Módulo <Azul>0</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo0">
                             <Modulos>
                                 <TextoInterno>Introdução</TextoInterno>
                             </Modulos>                            
