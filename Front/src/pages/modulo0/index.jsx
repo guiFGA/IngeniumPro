@@ -32,15 +32,12 @@ function Modulo0(){
                         <Linha></Linha>
                     </Topo>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Sed euismod, nisi at facilisis pretium, lorem eros tincidunt lacus, sit amet 
-                        fermentum nunc justo vel turpis. Integer ut justo sit amet arcu vehicula dictum. 
-                        Quisque consequat, urna sit amet vehicula ultricies, erat lectus sodales eros, vel 
-                        facilisis mauris sapien at orci. Morbi a massa ac mi tristique ullamcorper in id lorem. 
-                        Aenean in enim et justo malesuada faucibus at a elit. Donec vitae arcu id erat tempus 
-                        cursus in ut elit.
-                        4o  sit amet, consectetur adipiscing elit. Sed euismod, nisi at facilisis pretium, 
-                        lorem eros tincidunt lacus, sit amet fermentum nunc justo 
+                        Aprender é uma habilidade que nos acompanha por toda a vida. 
+                        No entanto, muitas vezes nos dedicamos aos estudos sem conhecer 
+                        as melhores estratégias para aproveitar ao máximo nosso potencial. 
+                        O módulo "Aprendendo a Aprender" foi criado para ajudá-lo a explorar 
+                        métodos de aprendizagem variados, desde técnicas de memorização até a 
+                        gestão eficaz do tempo e a aplicação de ferramentas modernas de estudo.  
                     </p>
 
                     <Baixo>

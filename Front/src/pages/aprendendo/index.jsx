@@ -135,11 +135,7 @@ function Aprendendo(){
                     
                     <PesquisaModelo id='Sobre o aprendizado'>
                         <h2>Sobre o <Azul>aprendizado</Azul></h2>
-                        <Paragrafo2> 
-                            Aprender é uma habilidade que nos acompanha por toda a vida. No entanto, muitas vezes nos dedicamos aos estudos 
-                            sem conhecer as melhores estratégias para aproveitar ao máximo nosso potencial. O módulo "Aprendendo a Aprender" 
-                            foi criado para ajudá-lo a explorar métodos de aprendizagem variados, desde técnicas de memorização até a gestão 
-                            eficaz do tempo e a aplicação de ferramentas modernas de estudo.  
+                        <Paragrafo2>  
                             Aqui, você descobrirá como personalizar seu processo de aprendizagem, identificar seu estilo predominante e adotar 
                             práticas que tornarão seus estudos mais produtivos e significativos. Vamos aprender algumas abordagens e técnicas 
                             que podem ser muito úteis.

@@ -53,7 +53,7 @@ export const Main = styled.div`
 //---------------Caixa---------------
 export const Caixa = styled.div`
     width: 70vw;
-    height: 90vh;
+    height: 100%;
     border: 1px solid transparent;
     border-image: linear-gradient(to top, rgba(4, 11, 16, 1), rgba(2, 188, 255, 1))10;
     display: flex;
@@ -62,7 +62,6 @@ export const Caixa = styled.div`
     gap: 50px;
     background-color: rgba(4, 11, 16, 1);
     box-shadow: 1.5px 2px 3px black;
-
 `
 
 export const Topo = styled.div`
@@ -89,3 +88,15 @@ export const Linha = styled.div`
     height: 1px;
     background-color: #fff;
 `
+//-------------Textos-------------
+
+export const Textos = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;  
+`
+export const Referencia = styled.a`
+    text-decoration: none;
+    color:  rgba(2, 188, 255, 1);
+`
+
