@@ -41,21 +41,21 @@ function Teste(){
                     </p>
 
                     <Baixo>
-                        <Link href="http://localhost:5173/aprendendoaaprender">
+                        <Link href="http://localhost:5173/material">
                             <Click>
                                 <Bolinha><p>1</p></Bolinha>
                                 <p>Livros</p>
                             </Click>
                         </Link>
                             
-                        <Link href="http://localhost:5173/entendendooproblema">
+                        <Link href="http://localhost:5173/material">
                             <Click>
                                 <Bolinha><p>2</p></Bolinha>
                                 <p>Vídeos</p>
                             </Click>
                         </Link>
 
-                        <Link href="http://localhost:5173/entendendooproblema">
+                        <Link href="http://localhost:5173/material">
                             <Click>
                                 <Bolinha><p>3</p></Bolinha>
                                 <p>Artigos</p>
