@@ -66,7 +66,7 @@ function Trilha(){
                         <H3>Módulo <Azul>1</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo/1">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -80,7 +80,7 @@ function Trilha(){
                         <H3>Módulo <Azul>2</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo/2">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -94,7 +94,7 @@ function Trilha(){
                         <H3>Módulo <Azul>3</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo/3">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -108,7 +108,7 @@ function Trilha(){
                         <H3>Módulo <Azul>4</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo/4">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -122,7 +122,7 @@ function Trilha(){
                         <H3>Módulo <Azul>5</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/perfil">
+                        <Link href="http://localhost:5173/modulo/5">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            

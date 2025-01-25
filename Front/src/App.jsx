@@ -79,7 +79,7 @@ function App() {
         <Route path="/modulo/:id" element={<PrivateRoute><ModuloDinamico/></PrivateRoute>} />
 
         {/*rota teste para os módulos*/}
-        <Route path="/material" element={<PrivateRoute><Material/></PrivateRoute>} />
+        <Route path="/material:id" element={<PrivateRoute><Material/></PrivateRoute>} />
 
 
      
