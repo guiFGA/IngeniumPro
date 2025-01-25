@@ -109,7 +109,7 @@ function Entendendo(){
                                 <Azul>Agência Espacial Europeia (ESA):</Azul><br /> Reconhecida por suas iniciativas 
                                 na área de segurança espacial, a ESA oferece informações detalhadas sobre 
                                 monitoramento, mitigação e prevenção de detritos espaciais, destacando sua 
-                                importância no cenário internacional. Saiba mais em <Referencia href="https://www.esa.int/Space_Safety/Space_Debris">
+                                importância no cenário internacional. Saiba mais em <Referencia target="black" href="https://www.esa.int/Space_Safety/Space_Debris">
                                 Detritos Espaciais – ESA.</Referencia>
                             </li>
                             <li>
