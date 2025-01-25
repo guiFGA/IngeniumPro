@@ -17,6 +17,7 @@ import Trilha from './pages/trilha';
 import Modulo0 from './pages/modulo0';
 import Aprendendo from './pages/aprendendo';
 import Entendendo from './pages/entendendo';
+import Teste from './pages/teste';
 
 function App() {
   return (
@@ -70,10 +71,11 @@ function App() {
         {/*rota para página de Aprendendo a Aprender*/}
         <Route path="/aprendendoaaprender" element={<PrivateRoute><Aprendendo/></PrivateRoute>} />
 
-        {/*rota para página de Aprendendo a Aprender*/}
+        {/*rota para página de Entendendo o problema*/}
         <Route path="/entendendooproblema" element={<PrivateRoute><Entendendo/></PrivateRoute>} />
 
-
+        {/*rota teste para os módulos*/}
+        <Route path="/teste" element={<PrivateRoute><Teste/></PrivateRoute>} />
 
 
      
