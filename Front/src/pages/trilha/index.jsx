@@ -68,7 +68,37 @@ function Trilha(){
                     <Mod>
                         <Link href="http://localhost:5173/modulo/1">
                             <Modulos>
-                                <TextoInterno>Aprendendo a Aprender</TextoInterno>
+                                <TextoInterno>Introdução</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+
+                        <Link href="http://localhost:5173/modulo/1">
+                            <Modulos>
+                                <TextoInterno>Cálculo 1</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+
+                        <Link href="http://localhost:5173/modulo/1">
+                            <Modulos>
+                                <TextoInterno>Introdução à álgebra Linear</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+
+                        <Link href="http://localhost:5173/modulo/1">
+                            <Modulos>
+                                <TextoInterno>Física Clássica e Moderna</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+
+                        <Link href="http://localhost:5173/modulo/1">
+                            <Modulos>
+                                <TextoInterno>Física Clássica e Moderna</TextoInterno>
+                            </Modulos>                            
+                        </Link>
+
+                        <Link href="http://localhost:5173/modulo/1">
+                            <Modulos>
+                                <TextoInterno>Programação e Algoritimos</TextoInterno>
                             </Modulos>                            
                         </Link>
                     </Mod>

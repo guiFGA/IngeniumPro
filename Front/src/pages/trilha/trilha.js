@@ -137,7 +137,8 @@ export const Mod = styled.div`
     align-items: center;
     justify-content: center;
     color: #fff;
-
+    flex-wrap: wrap;
+    gap: 20px;
 `
 export const Modulos = styled.div`
     width: 10vw;
@@ -148,6 +149,7 @@ export const Modulos = styled.div`
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
 
     &:hover {
         transform: scale(1.1); /* Aumenta o tamanho da imagem ao passar o mouse */
