@@ -1,7 +1,7 @@
 import logo from '../../assets/imagens/logo.svg'
 import { Nav, NavBar, NavLinks, Caixa, Main, Topo, Azul, Titulo, Linha, Baixo, Click, Bolinha, Link, CantoDir} from './teste';
 
-function Teste(){
+function ModuloDinamico(){
     return(
         <div>
             <header>
@@ -71,4 +71,4 @@ function Teste(){
     )    
 }
 
-export default Teste;
+export default ModuloDinamico;

@@ -17,7 +17,7 @@ import Trilha from './pages/trilha';
 import Modulo0 from './pages/modulo0';
 import Aprendendo from './pages/aprendendo';
 import Entendendo from './pages/entendendo';
-import Teste from './pages/teste';
+import ModuloDinamico from './pages/dinamico';
 import Material from './pages/material';
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
         <Route path="/entendendooproblema" element={<PrivateRoute><Entendendo/></PrivateRoute>} />
 
         {/*rota teste para os módulos*/}
-        <Route path="/teste" element={<PrivateRoute><Teste/></PrivateRoute>} />
+        <Route path="/modulo/:id" element={<PrivateRoute><ModuloDinamico/></PrivateRoute>} />
 
         {/*rota teste para os módulos*/}
         <Route path="/material" element={<PrivateRoute><Material/></PrivateRoute>} />
