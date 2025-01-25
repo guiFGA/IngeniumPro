@@ -18,6 +18,7 @@ import Modulo0 from './pages/modulo0';
 import Aprendendo from './pages/aprendendo';
 import Entendendo from './pages/entendendo';
 import Teste from './pages/teste';
+import Material from './pages/material';
 
 function App() {
   return (
@@ -76,6 +77,9 @@ function App() {
 
         {/*rota teste para os módulos*/}
         <Route path="/teste" element={<PrivateRoute><Teste/></PrivateRoute>} />
+
+        {/*rota teste para os módulos*/}
+        <Route path="/material" element={<PrivateRoute><Material/></PrivateRoute>} />
 
 
      
