@@ -77,6 +77,9 @@ const Modulo = sequelize.define('Modulo', {
         type: DataTypes.TEXT,
         allowNull: true,
     },
+    
+    
+
 });
 
 

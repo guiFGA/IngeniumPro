@@ -72,31 +72,31 @@ function Trilha(){
                             </Modulos>                            
                         </Link>
 
-                        <Link href="http://localhost:5173/modulo/1">
+                        <Link href="http://localhost:5173/modulo/2">
                             <Modulos>
                                 <TextoInterno>Cálculo 1</TextoInterno>
                             </Modulos>                            
                         </Link>
 
-                        <Link href="http://localhost:5173/modulo/1">
+                        <Link href="http://localhost:5173/modulo/3">
                             <Modulos>
                                 <TextoInterno>Introdução à álgebra Linear</TextoInterno>
                             </Modulos>                            
                         </Link>
 
-                        <Link href="http://localhost:5173/modulo/1">
+                        <Link href="http://localhost:5173/modulo/4">
                             <Modulos>
                                 <TextoInterno>Física Clássica e Moderna</TextoInterno>
                             </Modulos>                            
                         </Link>
 
-                        <Link href="http://localhost:5173/modulo/1">
+                        <Link href="http://localhost:5173/modulo/5">
                             <Modulos>
                                 <TextoInterno>Física Clássica e Moderna</TextoInterno>
                             </Modulos>                            
                         </Link>
 
-                        <Link href="http://localhost:5173/modulo/1">
+                        <Link href="http://localhost:5173/modulo/6">
                             <Modulos>
                                 <TextoInterno>Programação e Algoritimos</TextoInterno>
                             </Modulos>                            
@@ -110,7 +110,7 @@ function Trilha(){
                         <H3>Módulo <Azul>2</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/modulo/2">
+                        <Link href="http://localhost:5173/modulo/7">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -124,7 +124,7 @@ function Trilha(){
                         <H3>Módulo <Azul>3</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/modulo/3">
+                        <Link href="http://localhost:5173/modulo/8">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -138,7 +138,7 @@ function Trilha(){
                         <H3>Módulo <Azul>4</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/modulo/4">
+                        <Link href="http://localhost:5173/modulo/9">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
@@ -152,7 +152,7 @@ function Trilha(){
                         <H3>Módulo <Azul>5</Azul></H3>
                     </Titulo>
                     <Mod>
-                        <Link href="http://localhost:5173/modulo/5">
+                        <Link href="http://localhost:5173/modulo/10">
                             <Modulos>
                                 <TextoInterno>Aprendendo a Aprender</TextoInterno>
                             </Modulos>                            
