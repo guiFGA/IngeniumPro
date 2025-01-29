@@ -15,6 +15,11 @@ function ModuloDinamico() {
 
     const token = sessionStorage.getItem("authToken")
     const decodede = JSON.parse(token);
+    const link_livros = `http://localhost:5173/material/${id}` + '/livros'
+    const link_videos = `http://localhost:5173/material/${id}` + '/videos'
+    const link_artigos = `http://localhost:5173/material/${id}` + '/artigos'
+
+
 
     console.log('token recebido' + decodede)
 
@@ -128,21 +133,21 @@ function ModuloDinamico() {
                     </p>
 
                     <Baixo>
-                        <Link href="http://localhost:5173/material">
+                        <Link href={link_livros}>
                             <Click>
                                 <Bolinha><p>1</p></Bolinha>
                                 <p>Livros</p>
                             </Click>
                         </Link>
 
-                        <Link href="http://localhost:5173/material">
+                        <Link href={link_videos}>
                             <Click>
                                 <Bolinha><p>2</p></Bolinha>
                                 <p>Vídeos</p>
                             </Click>
                         </Link>
 
-                        <Link href="http://localhost:5173/material">
+                        <Link href={link_artigos}>
                             <Click>
                                 <Bolinha><p>3</p></Bolinha>
                                 <p>Artigos</p>

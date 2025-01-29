@@ -1,16 +1,50 @@
 import logo from '../../assets/imagens/logo.svg'
-import { Nav, NavBar, NavLinks, Main, Titulo, Container, Card, Cima, Baixo, Azul} from './material';
+import { Nav, NavBar, NavLinks, Main, Titulo, Container, Card, Cima, Baixo, Azul } from './material';
 import Halliday from '../../assets/imagens/Halliday.png';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import api from '../../services/api';
 
-function Material(){
-    return(
+
+
+
+
+
+
+function Material() {
+    const { id, tipo } = useParams()
+    const [foto1, setFoto1] = useState('')
+    const [foto2, setFoto2] = useState('')
+    const [nome1, setNome1] = useState('')
+
+    function carregar() {
+
+        console.log({ tipo })
+        api
+            .post('/mostrarmaterial', {id, tipo})
+            .then((response) => {
+
+               
+
+            })
+
+    }
+
+    useEffect(() => {
+
+        carregar(); // Chamada quando o componente é montado
+
+    }, []); // O array vazio [] garante que só será chamado uma vez
+
+
+    return (
         <div>
             <header>
                 <Nav>
                     <div className="logo">
                         <a href="http://localhost:5173/">
                             <img src={logo} alt="logo" />
-                        </a>                    
+                        </a>
                     </div>
                     <div className="links">
                         <NavBar>
@@ -56,7 +90,7 @@ function Material(){
 
             </Main>
         </div>
-    )    
+    )
 }
 
 export default Material;
